@@ -42,5 +42,5 @@ Route::name('category.')
         Route::post('/create', [CategoryController::class, 'create'])->name('create');
         Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('edit');
         Route::post('/update/{category}', [CategoryController::class, 'update'])->name('update');
-        Route::get('/delete/{id}', [CategoryController::class, 'delete'])->name('delete');
+        Route::delete('/delete/{baseOn}/{id}', [CategoryController::class, 'delete'])->name('delete');
     });

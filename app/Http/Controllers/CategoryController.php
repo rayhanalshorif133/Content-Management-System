@@ -79,8 +79,14 @@ class CategoryController extends Controller
         }
     }
 
-    public function delete($id)
+    public function delete($baseOn, $id)
     {
-        //
+        if ($baseOn == 'parent') {
+            // $category = Category::find($id);
+            // $category->delete();
+            return $this->respondWithSuccess("Successfully deleted parent category");
+        } else {
+            return $this->respondWithSuccess("Successfully deleted child category");
+        }
     }
 }

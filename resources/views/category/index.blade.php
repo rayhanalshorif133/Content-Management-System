@@ -51,7 +51,7 @@
                                                     class="btn btn-info btn-sm">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <button type="button" class="btn btn-danger btn-sm">
+                                                <button type="button" class="btn btn-danger btn-sm deleteBtn">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </div>
@@ -75,6 +75,7 @@
     <script>
         $(function() {
             $(".viewBtn").click(handleViewBtn);
+            $(".deleteBtn").click(handleDeleteBtn);
         });
 
 
@@ -102,6 +103,38 @@
                     html += `</ul>`;
                     $(".box-category").html(html);
                 });
+        }
+
+        function handleDeleteBtn() {
+            const id = $(this).closest('tr').data('id');
+            Swal.fire(
+                'Data Add Successfully!',
+                'You clicked the button!',
+                'success'
+            )
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.delete(`category/delete/parent/${id}`)
+                        .then((result) => {
+                            Swal.fire(
+                                'Deleted!',
+                                result.data.message,
+                                'success'
+                            );
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 1000);
+                        })
+                }
+            })
         }
     </script>
 @endpush
