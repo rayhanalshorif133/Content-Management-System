@@ -15,3 +15,7 @@
     color: #000;
     font-weight: normal;
 }
+
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+    background-color: #106682 !important;
+}

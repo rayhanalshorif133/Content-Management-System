@@ -47,7 +47,7 @@
         <li class="nav-item">
             <form class="nav-link" action="{{ route('admin.logout') }}" method="post">
                 @csrf
-                <button type="submit" class="btn btn-danger">
+                <button type="submit" class="btn btn-outline-danger btn-sm">
                     <i class="fas fa-sign-out-alt"></i>
                 </button>
             </form>

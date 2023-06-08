@@ -1,33 +1,12 @@
 @extends('layouts.app')
 
 @section('style')
-    <style>
-        .expandable-body>td {
-            padding: 0 10px !important;
-            width: auto;
-        }
-
-        .expandable-body>td>div,
-        .expandable-body>td>p {
-            padding: 0.25rem 0.5rem !important;
-        }
-
-        /* after a line */
-        .expandable-body>td>div:not(:last-child)::after,
-        .expandable-body>td>p:not(:last-child)::after {
-            content: "";
-            display: block;
-            width: 100%;
-            height: 1px;
-            background-color: #dee2e6;
-        }
-    </style>
 @endsection
 
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="card card-info">
                     <div class="card-header">
                         <h3 class="card-title">
@@ -46,29 +25,36 @@
                                 <tr>
                                     <th>#sl</th>
                                     <th>Name</th>
+                                    <th>Sub Category</th>
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($categories as $key => $category)
-                                    <tr data-widget="expandable-table" aria-expanded="false">
+                                    <tr data-id={{ $category->id }}>
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $category->name }}</td>
+                                        <td>{{ $category->subCategories->count() }}</td>
                                         <td>
                                             <span class="badge badge-info">
                                                 {{ $category->status }}
                                             </span>
                                         </td>
                                         <td>
-                                            Actions
-                                        </td>
-                                    </tr>
-                                    <tr class="expandable-body d-none">
-                                        <td>
-                                            <p style="display: none;">
-                                                sdc
-                                            </p>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-success btn-sm viewBtn"
+                                                    data-toggle="modal" data-target="#view-category">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <a href="{{ route('category.edit', $category->id) }}"
+                                                    class="btn btn-info btn-sm">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button type="button" class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -81,5 +67,41 @@
         </div>
     </div>
 
+    @include('category.view')
     @include('category.create')
 @endsection
+
+@push('js')
+    <script>
+        $(function() {
+            $(".viewBtn").click(handleViewBtn);
+        });
+
+
+        function handleViewBtn() {
+            const id = $(this).closest('tr').data('id');
+            axios.get(`category/fetch-details/${id}`)
+                .then(function(response) {
+                    var html = "";
+                    const data = response.data.data;
+                    html += `<h5 class="text-center parent_category_name">Name: ${data.name}</h5>`;
+                    html +=
+                        `<p class="text-center text-muted">Status: <span class="badge badge-info">${data.status}</span></p>`;
+                    html += `<ul class="list-group list-group-unbordered mb-3">
+                        <li class="list-group-item">
+                             <b>#sl</b> <b class="float-right">Name</b>
+                        </li>
+                        `;
+
+                    data.sub_categories.forEach((element, index) => {
+                        console.log(element);
+                        html += `<li class="list-group-item">
+                             <b>${index+1}</b> <p class="float-right">${element.name}</p>
+                        </li>`;
+                    });
+                    html += `</ul>`;
+                    $(".box-category").html(html);
+                });
+        }
+    </script>
+@endpush
