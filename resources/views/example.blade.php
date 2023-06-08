@@ -11,9 +11,10 @@
                             Content Owners List
                         </h3>
                         <div class="card-tools">
-                            <a href="{{ route('content-owner.create') }}" class="btn btn-outline-add btn-tool">
+                            <button type="button" class="btn btn-outline-add btn-tool" data-toggle="modal"
+                                data-target="#create-category">
                                 <i class="fas fa-plus"></i> Add
-                            </a>
+                            </button>
                         </div>
                     </div>
                     <div class="card-body table-responsive p-0">

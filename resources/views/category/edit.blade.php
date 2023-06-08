@@ -47,7 +47,7 @@
                                 <div class="form-group">
                                     <label for="subCategoryName">Sub Category {{ $key + 1 }}
                                         <button type="button"
-                                            class="btn btn-outline-danger btn-sm float-right ml-3 deleteItemBtn"
+                                            class="btn btn-outline-danger btn-sm float-right ml-3 categoryDeleteItemBtn"
                                             data-sub_cat_id={{ $subCategory->id }}><i class="fas fa-trash"></i></button>
                                     </label>
                                     <input type="text" name="subCatIdAndNames[{{ $subCategory->id }}]"

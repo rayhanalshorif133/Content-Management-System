@@ -52,8 +52,8 @@ Route::name('content-owner.')
     ->prefix('content-owner')
     ->group(function () {
         Route::get('/', [ContentOwnerController::class, 'index'])->name('index');
+        Route::get('/view/{id}', [ContentOwnerController::class, 'view'])->name('view');
         Route::get('/create', [ContentOwnerController::class, 'create'])->name('create');
-        Route::get('/fetch-details/{id}', [ContentOwnerController::class, 'fetchDetails'])->name('fetch-details');
         Route::post('/store', [ContentOwnerController::class, 'store'])->name('store');
         Route::get('/edit/{id}', [ContentOwnerController::class, 'edit'])->name('edit');
         Route::post('/update/{contentOwner}', [ContentOwnerController::class, 'update'])->name('update');

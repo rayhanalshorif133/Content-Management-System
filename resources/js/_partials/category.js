@@ -86,7 +86,7 @@ function handleItemDeleteBtn() {
 
 export function categoryApp() {
     // category
-    $(".viewBtn").click(handleViewBtn);
-    $(".deleteBtn").click(handleDeleteBtn);
-    $(".deleteItemBtn").click(handleItemDeleteBtn);
+    $(".categoryViewBtn").click(handleViewBtn);
+    $(".categoryDeleteBtn").click(handleDeleteBtn);
+    $(".categoryDeleteItemBtn").click(handleItemDeleteBtn);
 }

@@ -7,7 +7,7 @@
                 <div class="card card-info">
                     <div class="card-header">
                         <h3 class="card-title">
-                            <i class="fas fa-text-width"></i>
+                            <i class="fas fa-house-user"></i>
                             Create New Content Owner
                         </h3>
                         <div class="card-tools">

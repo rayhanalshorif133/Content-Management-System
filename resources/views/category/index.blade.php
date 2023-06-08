@@ -44,7 +44,7 @@
                                         </td>
                                         <td>
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-success btn-sm viewBtn"
+                                                <button type="button" class="btn btn-success btn-sm categoryViewBtn"
                                                     data-toggle="modal" data-target="#view-category">
                                                     <i class="fas fa-eye"></i>
                                                 </button>
@@ -52,7 +52,7 @@
                                                     class="btn btn-info btn-sm">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <button type="button" class="btn btn-danger btn-sm deleteBtn">
+                                                <button type="button" class="btn btn-danger btn-sm categoryDeleteBtn">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </div>

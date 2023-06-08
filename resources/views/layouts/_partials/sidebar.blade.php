@@ -1,4 +1,8 @@
 <!-- Main Sidebar Container -->
+@php
+    $routeName = Route::currentRouteName();
+@endphp
+
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
@@ -44,7 +48,7 @@
                 data-accordion="false">
                 <li class="nav-item menu-open">
                     <a href="{{ route('admin.dashboard') }}"
-                        class="nav-link @if (Route::currentRouteName() == 'admin.dashboard') active @endif ">
+                        class="nav-link @if ($routeName == 'admin.dashboard') active @endif ">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -79,7 +83,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('category.index') }}"
-                        class="nav-link @if (Route::currentRouteName() == 'category.index') active @endif ">
+                        class="nav-link @if ($routeName == 'category.index') active @endif ">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             Category
@@ -89,7 +93,18 @@
                 <li class="nav-header">
                     Information Section
                 </li>
-                <li class="nav-item  @if (Route::currentRouteName() == 'content-owner.index' || Route::currentRouteName() == 'content-owner.create') menu-is-opening menu-open @endif ">
+
+                @php
+                    $contentMenuclass = '';
+                    $contentListclass = '';
+                    if ($routeName == 'content-owner.index' || $routeName == 'content-owner.create' || $routeName == 'content-owner.edit' || $routeName == 'content-owner.view') {
+                        $contentMenuclass = 'menu-is-opening menu-open';
+                    }
+                    if ($routeName == 'content-owner.index' || $routeName == 'content-owner.edit' || $routeName == 'content-owner.view') {
+                        $contentListclass = 'active';
+                    }
+                @endphp
+                <li class="nav-item {{ $contentMenuclass }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
@@ -100,7 +115,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('content-owner.create') }}"
-                                class="nav-link @if (Route::currentRouteName() == 'content-owner.create') active @endif ">
+                                class="nav-link @if ($routeName == 'content-owner.create') active @endif ">
                                 <i class="far fa-user nav-icon"></i>
                                 <p>Add New Owner</p>
                             </a>
@@ -108,8 +123,7 @@
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('content-owner.index') }}"
-                                class="nav-link @if (Route::currentRouteName() == 'content-owner.index') active @endif ">
+                            <a href="{{ route('content-owner.index') }}" class="nav-link {{ $contentListclass }}">
                                 <i class="far fa-list-alt nav-icon"></i>
                                 <p>Owner List</p>
                             </a>
