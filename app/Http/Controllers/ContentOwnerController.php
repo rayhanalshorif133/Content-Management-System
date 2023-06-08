@@ -42,8 +42,9 @@ class ContentOwnerController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $image->storeAs('public/content-owner', $image->getClientOriginalName());
-            $contentOwner->image = $image->getClientOriginalName();
+            $imageName = date('Y_m_d_H_i_s_') .  $image->getClientOriginalName();
+            $image->storeAs('public/content-owner', $imageName);
+            $contentOwner->image = 'storage/content-owner/' . $imageName;
         }
 
         if ($contentOwner->save()) {
