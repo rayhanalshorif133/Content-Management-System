@@ -110,4 +110,17 @@ class ContentOwnerController extends Controller
         $contentOwner = ContentOwner::findOrFail($id);
         return view('content-owner.edit', compact('contentOwner'));
     }
+
+    public function delete($id)
+    {
+        $contentOwner = ContentOwner::findOrFail($id);
+        if (file_exists($contentOwner->image)) {
+            unlink($contentOwner->image);
+        }
+        if ($contentOwner->delete()) {
+            $this->respondWithSuccess('Content Owner deleted successfully.');
+        } else {
+            $this->respondWithError('Content Owner deletion failed.');
+        }
+    }
 }

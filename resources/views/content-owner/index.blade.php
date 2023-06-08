@@ -37,7 +37,7 @@
                                         <td>{{ $contentOwner->address }}</td>
                                         <td>{{ $contentOwner->phone }}</td>
                                         <td>
-                                            <div class="btn-group">
+                                            <div class="btn-group" data-id={{ $contentOwner->id }}>
                                                 <a href="{{ route('content-owner.view', $contentOwner->id) }}"
                                                     class="btn btn-success btn-sm">
                                                     <i class="fas fa-eye"></i>
@@ -46,7 +46,7 @@
                                                     class="btn btn-info btn-sm">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <button type="button" class="btn btn-danger btn-sm deleteBtn">
+                                                <button type="button" class="btn btn-danger btn-sm contentOwnerDeleteBtn">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </div>
