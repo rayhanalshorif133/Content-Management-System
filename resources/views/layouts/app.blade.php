@@ -116,7 +116,9 @@
             </section>
         </div>
         <footer class="main-footer text-center">
-            <strong>Copyright &copy; 2020 <a href="https://printwala.com">Printwala</a>.</strong>
+            <strong>Copyright &copy; 2023 <a href="http://b2m-tech.com/">
+                    B2M Technologies
+                </a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 1.0.0
