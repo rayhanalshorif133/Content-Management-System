@@ -1,4 +1,4 @@
-export function handleViewBtn() {
+function handleViewBtn() {
     const id = $(this).closest('tr').data('id');
     axios.get(`category/fetch-details/${id}`)
         .then(function (response) {
@@ -24,7 +24,7 @@ export function handleViewBtn() {
 }
 
 
-export function handleDeleteBtn() {
+function handleDeleteBtn() {
     const id = $(this).closest('tr').data('id');
     Swal.fire(
         'Data Add Successfully!',
@@ -56,7 +56,7 @@ export function handleDeleteBtn() {
     })
 }
 
-export function handleItemDeleteBtn() {
+function handleItemDeleteBtn() {
     var id = $(this).data('sub_cat_id');
     console.log(id);
     Swal.fire({
@@ -82,4 +82,11 @@ export function handleItemDeleteBtn() {
                 })
         }
     })
+}
+
+export function categoryApp() {
+    // category
+    $(".viewBtn").click(handleViewBtn);
+    $(".deleteBtn").click(handleDeleteBtn);
+    $(".deleteItemBtn").click(handleItemDeleteBtn);
 }

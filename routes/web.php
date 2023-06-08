@@ -40,6 +40,7 @@ Route::name('category.')
         Route::get('/', [CategoryController::class, 'index'])->name('index');
         Route::get('/fetch-details/{id}', [CategoryController::class, 'fetchDetails'])->name('fetch-details');
         Route::post('/create', [CategoryController::class, 'create'])->name('create');
+        Route::post('/create/sub-category', [CategoryController::class, 'createSubCategory'])->name('create.sub-category');
         Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('edit');
         Route::post('/update/{category}', [CategoryController::class, 'update'])->name('update');
         Route::delete('/delete/{baseOn}/{id}', [CategoryController::class, 'delete'])->name('delete');

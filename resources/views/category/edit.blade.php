@@ -54,10 +54,14 @@
                                         class="form-control" value="{{ $subCategory->name }}">
                                 </div>
                             @endforeach
+                            <button type="button" class="btn btn-outline-info btn-sm float-right mb-3 createNewSubCat"
+                                data-toggle="modal" data-target="#create-sub-category">
+                                <i class="fas fa-plus"></i> New Sub Category</button>
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <button type="button" class="btn btn-outline-danger btn-sm float-left">Back</button>
+                            <a href="{{ route('category.index') }}" class="btn btn-outline-danger btn-sm float-left">Back
+                            </a>
                             {{-- update --}}
                             <button type="submit" class="btn btn-outline-success btn-sm float-right">Update</button>
                         </div>
@@ -66,6 +70,8 @@
             </div>
         </div>
     </div>
+
+    @include('category.addNewSubCategory', ['category' => $category])
 @endsection
 
 @push('js')

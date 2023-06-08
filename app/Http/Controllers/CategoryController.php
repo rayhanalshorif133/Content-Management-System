@@ -49,6 +49,21 @@ class CategoryController extends Controller
         return redirect()->back();
     }
 
+    public function createSubCategory(Request $request)
+    {
+
+        if ($request->parent_id) {
+            SubCategory::create([
+                'name' => $request->name,
+                'category_id' => $request->parent_id,
+            ]);
+            $this->flashMessageSuccess('Sub Category Created Successfully');
+        } else {
+            $this->flashMessageError('Please Select Parent Category');
+        }
+        return redirect()->back();
+    }
+
     public function edit($id)
     {
         $category = Category::select()
@@ -98,7 +113,13 @@ class CategoryController extends Controller
                 return $this->respondWithError("Category not found");
             }
         } else {
-            return $this->respondWithSuccess("Successfully deleted child category");
+            $subCategory = SubCategory::find($id);
+            if ($subCategory) {
+                $subCategory->delete();
+                return $this->respondWithSuccess("Successfully deleted child category");
+            } else {
+                return $this->respondWithError("Child Category not found");
+            }
         }
     }
 }
