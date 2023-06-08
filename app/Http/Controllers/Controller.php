@@ -27,6 +27,20 @@ class Controller extends BaseController
         Session::flash('class', $class);
     }
 
+    protected function flashMessageValidatorError($errors, $class = 'danger')
+    {
+        foreach ($errors as $key => $value) {
+            $errors[$key] = $value[0];
+        }
+        // make a message
+        $message = '';
+        foreach ($errors as $key => $value) {
+            $message .= $value . ' ';
+        }
+        Session::flash('message', $message);
+        Session::flash('class', $class);
+    }
+
     // For API
     protected function respondWithSuccess($message = '', $data = [], $code = 200)
     {

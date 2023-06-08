@@ -89,7 +89,7 @@
                 <li class="nav-header">
                     Information Section
                 </li>
-                <li class="nav-item">
+                <li class="nav-item  @if (Route::currentRouteName() == 'content-owner.index' || Route::currentRouteName() == 'content-owner.create') menu-is-opening menu-open @endif ">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
@@ -99,7 +99,8 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('content-owner.create') }}"
+                                class="nav-link @if (Route::currentRouteName() == 'content-owner.create') active @endif ">
                                 <i class="far fa-user nav-icon"></i>
                                 <p>Add New Owner</p>
                             </a>
@@ -107,7 +108,8 @@
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('content-owner.index') }}"
+                                class="nav-link @if (Route::currentRouteName() == 'content-owner.index') active @endif ">
                                 <i class="far fa-list-alt nav-icon"></i>
                                 <p>Owner List</p>
                             </a>

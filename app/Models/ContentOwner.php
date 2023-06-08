@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class ContentOwner extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'email',
+        'phone',
+        'address',
+        'image',
+    ];
 }

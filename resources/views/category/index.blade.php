@@ -14,7 +14,8 @@
                             Category List
                         </h3>
                         <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-toggle="modal" data-target="#create-category">
+                            <button type="button" class="btn btn-outline-add btn-tool" data-toggle="modal"
+                                data-target="#create-category">
                                 <i class="fas fa-plus"></i> Add
                             </button>
                         </div>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContentOwnerController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -44,4 +45,17 @@ Route::name('category.')
         Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('edit');
         Route::post('/update/{category}', [CategoryController::class, 'update'])->name('update');
         Route::delete('/delete/{baseOn}/{id}', [CategoryController::class, 'delete'])->name('delete');
+    });
+
+// Content Owner
+Route::name('content-owner.')
+    ->prefix('content-owner')
+    ->group(function () {
+        Route::get('/', [ContentOwnerController::class, 'index'])->name('index');
+        Route::get('/create', [ContentOwnerController::class, 'create'])->name('create');
+        Route::get('/fetch-details/{id}', [ContentOwnerController::class, 'fetchDetails'])->name('fetch-details');
+        Route::post('/store', [ContentOwnerController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [ContentOwnerController::class, 'edit'])->name('edit');
+        Route::post('/update/{contentOwner}', [ContentOwnerController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [ContentOwnerController::class, 'delete'])->name('delete');
     });

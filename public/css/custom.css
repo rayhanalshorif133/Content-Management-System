@@ -19,3 +19,27 @@
 .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
     background-color: #106682 !important;
 }
+
+.btn-outline-add {
+    background-color: #fff !important;
+    color: #106682 !important;
+    border-color: #106682 !important;
+}
+
+.btn-outline-add:hover {
+    background-color: #106682 !important;
+    color: #fff !important;
+    border-color: #106682 !important;
+}
+
+.btn-outline-back {
+    background-color: #fff !important;
+    color: #b62626 !important;
+    border-color: #b62626 !important;
+}
+
+.btn-outline-back:hover {
+    background-color: #b62626 !important;
+    color: #fff !important;
+    border-color: #b62626 !important;
+}
