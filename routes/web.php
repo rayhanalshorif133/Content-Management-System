@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContentOwnerController;
+use App\Http\Controllers\ContentTypeController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -58,4 +59,15 @@ Route::name('content-owner.')
         Route::get('/edit/{id}', [ContentOwnerController::class, 'edit'])->name('edit');
         Route::post('/update/{contentOwner}', [ContentOwnerController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [ContentOwnerController::class, 'delete'])->name('delete');
+    });
+
+// Content Types
+Route::name('content-type.')
+    ->prefix('content-type')
+    ->group(function () {
+        Route::get('/', [ContentTypeController::class, 'index'])->name('index');
+        Route::post('/create', [ContentTypeController::class, 'create'])->name('create');
+        Route::get('/edit/{id}', [ContentTypeController::class, 'edit'])->name('edit');
+        Route::post('/update/{ContentType}', [ContentTypeController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [ContentTypeController::class, 'delete'])->name('delete');
     });

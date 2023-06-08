@@ -131,7 +131,8 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('content-type.index') }}"
+                        class="nav-link @if ($routeName == 'content-type.index') active @endif ">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             Content Type

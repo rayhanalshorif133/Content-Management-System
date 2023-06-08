@@ -1,5 +1,6 @@
 <?php
 
+use Database\Seeders\ContentTypeSeeder;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,8 +16,14 @@ class CreateContentTypesTable extends Migration
     {
         Schema::create('content_types', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique();
+            $table->string('description')->nullable()->default(NULL);
+            $table->string('status')->nullable()->default('active');
             $table->timestamps();
         });
+
+        $contentTypeSeeder = new ContentTypeSeeder();
+        $contentTypeSeeder->run();
     }
 
     /**
