@@ -82,9 +82,21 @@ class CategoryController extends Controller
     public function delete($baseOn, $id)
     {
         if ($baseOn == 'parent') {
-            // $category = Category::find($id);
-            // $category->delete();
-            return $this->respondWithSuccess("Successfully deleted parent category");
+            $category = Category::find($id);
+            $subCategories = SubCategory::where('category_id', $id)->get();
+
+            if ($subCategories) {
+                foreach ($subCategories as $subCategory) {
+                    $subCategory->delete();
+                }
+            }
+
+            if ($category) {
+                $category->delete();
+                return $this->respondWithSuccess("Successfully deleted parent category");
+            } else {
+                return $this->respondWithError("Category not found");
+            }
         } else {
             return $this->respondWithSuccess("Successfully deleted child category");
         }
