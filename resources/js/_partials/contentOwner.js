@@ -25,8 +25,17 @@ function handleContentOwnerDeleteBtn() {
         }
     })
 }
+function handleContentOwnerUpdateBtn() {
+    var id = $(this).parent().attr("data-id");
+    var name = $(this).closest("tr").find(".content_owner_name").text();
+    $("#content_owner_id").val(id);
+    $("#updateName").val(name);
+}
+
+
 
 
 export const contentOwnerApp = () => {
+    $(".contentOwnerUpdateBtn").click(handleContentOwnerUpdateBtn);
     $(".contentOwnerDeleteBtn").click(handleContentOwnerDeleteBtn);
 }

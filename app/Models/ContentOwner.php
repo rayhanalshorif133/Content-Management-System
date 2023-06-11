@@ -11,9 +11,6 @@ class ContentOwner extends Model
 
     protected $fillable = [
         'name',
-        'email',
-        'phone',
-        'address',
         'image',
     ];
 }

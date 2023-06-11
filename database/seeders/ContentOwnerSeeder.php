@@ -16,16 +16,12 @@ class ContentOwnerSeeder extends Seeder
     {
         ContentOwner::create([
             'name' => 'Content Owner 1',
-            'email' => 'content-owner1@example.com',
-            'phone' => '01923988380',
-            'address' => 'Content Owner 1 Address',
+            'image' => 'https://png.pngtree.com/png-vector/20220709/ourmid/pngtree-businessman-user-avatar-wearing-suit-with-red-tie-png-image_5809521.png',
         ]);
 
         ContentOwner::create([
             'name' => 'Content Owner 2',
-            'email' => 'content-owner2@example.com',
-            'phone' => '01923988381',
-            'address' => 'Content Owner 2 Address',
+            'image' => 'https://png.pngtree.com/png-vector/20220709/ourmid/pngtree-businessman-user-avatar-wearing-suit-with-red-tie-png-image_5809521.png',
         ]);
     }
 }

@@ -11,7 +11,8 @@
                             Content Owners List
                         </h3>
                         <div class="card-tools">
-                            <a href="{{ route('content-owner.create') }}" class="btn btn-outline-add btn-tool">
+                            <a href="#" class="btn btn-outline-add btn-tool" data-toggle="modal"
+                                data-target="#content-owner-create">
                                 <i class="fas fa-plus"></i> Add
                             </a>
                         </div>
@@ -21,10 +22,8 @@
                             <thead>
                                 <tr>
                                     <th>#sl</th>
+                                    <th>Image</th>
                                     <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Address</th>
-                                    <th>Phone</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -32,18 +31,18 @@
                                 @foreach ($contentOwners as $key => $contentOwner)
                                     <tr data-id={{ $contentOwner->id }}>
                                         <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $contentOwner->name }}</td>
-                                        <td>{{ $contentOwner->email }}</td>
-                                        <td>{{ $contentOwner->address }}</td>
-                                        <td>{{ $contentOwner->phone }}</td>
+                                        <td>
+                                            <a href="{{ asset($contentOwner->image) }}" data-lightbox="image-1"
+                                                data-title="{{ $contentOwner->name }}">
+                                                <img src="{{ asset($contentOwner->image) }}" alt="{{ $contentOwner->name }}"
+                                                    width="50px" height="50px">
+                                            </a>
+                                        </td>
+                                        <td class="content_owner_name">{{ $contentOwner->name }}</td>
                                         <td>
                                             <div class="btn-group" data-id={{ $contentOwner->id }}>
-                                                <a href="{{ route('content-owner.view', $contentOwner->id) }}"
-                                                    class="btn btn-success btn-sm">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a href="{{ route('content-owner.edit', $contentOwner->id) }}"
-                                                    class="btn btn-info btn-sm">
+                                                <a href="#" class="btn btn-info btn-sm contentOwnerUpdateBtn"
+                                                    data-toggle="modal" data-target="#content-owner-update">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <button type="button" class="btn btn-danger btn-sm contentOwnerDeleteBtn">
@@ -61,4 +60,6 @@
             </div>
         </div>
     </div>
+    @include('content-owner.create')
+    @include('content-owner.update')
 @endsection

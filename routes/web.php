@@ -53,11 +53,8 @@ Route::name('content-owner.')
     ->prefix('content-owner')
     ->group(function () {
         Route::get('/', [ContentOwnerController::class, 'index'])->name('index');
-        Route::get('/view/{id}', [ContentOwnerController::class, 'view'])->name('view');
-        Route::get('/create', [ContentOwnerController::class, 'create'])->name('create');
         Route::post('/store', [ContentOwnerController::class, 'store'])->name('store');
-        Route::get('/edit/{id}', [ContentOwnerController::class, 'edit'])->name('edit');
-        Route::post('/update/{contentOwner}', [ContentOwnerController::class, 'update'])->name('update');
+        Route::post('/update', [ContentOwnerController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [ContentOwnerController::class, 'delete'])->name('delete');
     });
 
@@ -68,6 +65,6 @@ Route::name('content-type.')
         Route::get('/', [ContentTypeController::class, 'index'])->name('index');
         Route::post('/create', [ContentTypeController::class, 'create'])->name('create');
         Route::get('/edit/{id}', [ContentTypeController::class, 'edit'])->name('edit');
-        Route::post('/update/{ContentType}', [ContentTypeController::class, 'update'])->name('update');
+        Route::post('/update', [ContentTypeController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [ContentTypeController::class, 'delete'])->name('delete');
     });

@@ -1,67 +1,41 @@
-@extends('layouts.app')
-
-@section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-9">
-                <div class="card card-info">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="fas fa-house-user"></i>
-                            Create New Content Owner
-                        </h3>
-                        <div class="card-tools">
-                            <a href="{{ route('content-owner.index') }}" class="btn btn-outline-back btn-tool">
-                                <i class="fa-solid fa-angles-left fa-fade"></i> Back
-                            </a>
+<div class="modal fade" id="content-owner-create" tabindex="-1" role="dialog" aria-labelledby="content-owner-createLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="content-owner-createLabel"><i class="fas fa-house-user"></i>
+                    Create New Content Owner</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="form" action="{{ route('content-owner.store') }}" method="POST"
+                enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="image" class="optional">Image</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="image" name="image">
+                                <label class="custom-file-label" for="image">Choose file</label>
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text">Upload</span>
+                            </div>
                         </div>
                     </div>
-                    <form class="form" action="{{ route('content-owner.store') }}" method="POST"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="image" class="optional">Image</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="image" name="image">
-                                        <label class="custom-file-label" for="image">Choose file</label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">Upload</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="name" class="required">Name</label>
-                                <input type="text" class="form-control" required id="name" name="name"
-                                    placeholder="Enter owner name">
-                            </div>
-                            <div class="form-group">
-                                <label for="email" class="required">Email address</label>
-                                <input type="email" class="form-control" id="email" name="email"
-                                    placeholder="Enter email address">
-                            </div>
-                            <div class="form-group">
-                                <label for="phone" class="required">Phone</label>
-                                <input type="text" class="form-control" id="phone" name="phone"
-                                    placeholder="Enter phone number">
-                            </div>
-                            <div class="form-group">
-                                <label for="address" class="required">Address</label>
-                                <input type="text" class="form-control" id="address" name="address"
-                                    placeholder="Enter address number">
-                            </div>
-
-                        </div>
-
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-info">Submit</button>
-                        </div>
-                    </form>
-                    <!-- /.card-body -->
+                    <div class="form-group">
+                        <label for="name" class="required">Name</label>
+                        <input type="text" class="form-control" required id="name" name="name"
+                            placeholder="Enter owner name">
+                    </div>
                 </div>
-            </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info">Submit</button>
+                </div>
+            </form>
         </div>
     </div>
-@endsection
+</div>

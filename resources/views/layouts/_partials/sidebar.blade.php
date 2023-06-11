@@ -94,41 +94,14 @@
                     Information Section
                 </li>
 
-                @php
-                    $contentMenuclass = '';
-                    $contentListclass = '';
-                    if ($routeName == 'content-owner.index' || $routeName == 'content-owner.create' || $routeName == 'content-owner.edit' || $routeName == 'content-owner.view') {
-                        $contentMenuclass = 'menu-is-opening menu-open';
-                    }
-                    if ($routeName == 'content-owner.index' || $routeName == 'content-owner.edit' || $routeName == 'content-owner.view') {
-                        $contentListclass = 'active';
-                    }
-                @endphp
-                <li class="nav-item {{ $contentMenuclass }}">
-                    <a href="#" class="nav-link">
+                <li class="nav-item">
+                    <a href="{{ route('content-owner.index') }}"
+                        class="nav-link @if ($routeName == 'content-owner.index') active @endif">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             Content Owner
-                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('content-owner.create') }}"
-                                class="nav-link @if ($routeName == 'content-owner.create') active @endif ">
-                                <i class="far fa-user nav-icon"></i>
-                                <p>Add New Owner</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('content-owner.index') }}" class="nav-link {{ $contentListclass }}">
-                                <i class="far fa-list-alt nav-icon"></i>
-                                <p>Owner List</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('content-type.index') }}"

@@ -33,4 +33,9 @@ class ContentTypeController extends Controller
 
         return redirect()->back()->with('success', 'Content type created successfully.');
     }
+
+    public function update(Request $request)
+    {
+        dd($request->all());
+    }
 }

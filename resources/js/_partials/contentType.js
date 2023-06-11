@@ -1,8 +1,7 @@
 function handleContentTypeUpdateBtn() {
-    console.log("update btn clicked");
-    $('#create-content-type').modal('show');
-
-
+    $('#update-content-type').modal('show');
+    var id = $(this).parent().attr("data-id");
+    $("#content_type_id").val(id);
 }
 
 function handleContentTypeDeleteBtn() {
@@ -35,7 +34,7 @@ function handleContentTypeDeleteBtn() {
 
 
 const contentTypeHideModal = () => {
-    $('#create-content-type').modal('hide');
+    $('#update-content-type').modal('hide');
 }
 
 export const contentTypeApp = () => {

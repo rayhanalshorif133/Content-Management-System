@@ -13,25 +13,12 @@ class ContentOwnerController extends Controller
         return view('content-owner.index', compact('contentOwners'));
     }
 
-    public function view($id)
-    {
-        $contentOwner = ContentOwner::findOrFail($id);
-        return view('content-owner.view', compact('contentOwner'));
-    }
-
-    public function create()
-    {
-        return view('content-owner.create');
-    }
 
     public function store(Request $request)
     {
 
         $validator = Validator($request->all(), [
-            'name' => 'required',
-            'email' => 'required|unique:content_owners',
-            'phone' => 'required|min:11|max:13|unique:content_owners',
-            'address' => 'required',
+            'name' => 'required|unique:content_owners',
         ]);
 
         if ($validator->fails()) {
@@ -43,9 +30,6 @@ class ContentOwnerController extends Controller
 
         $contentOwner = new ContentOwner();
         $contentOwner->name = $request->name;
-        $contentOwner->email = $request->email;
-        $contentOwner->phone = $request->phone;
-        $contentOwner->address = $request->address;
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -62,14 +46,17 @@ class ContentOwnerController extends Controller
             return redirect()->back();
         }
     }
-    public function update(Request $request, ContentOwner $contentOwner)
+    public function update(Request $request)
     {
+        $contentOwner = ContentOwner::findOrFail($request->content_owner_id);
+
+        if (!$contentOwner) {
+            $this->flashMessageError('Content Owner not found.');
+            return redirect()->back();
+        }
 
         $validator = Validator($request->all(), [
-            'name' => 'required',
-            'email' => 'required|unique:content_owners,email,' . $contentOwner->id,
-            'phone' => 'required|min:11|max:13|unique:content_owners,phone,' . $contentOwner->id,
-            'address' => 'required',
+            'name' => 'required|unique:content_owners,name,' . $contentOwner->id,
         ]);
 
         if ($validator->fails()) {
@@ -79,9 +66,6 @@ class ContentOwnerController extends Controller
 
 
         $contentOwner->name = $request->name;
-        $contentOwner->email = $request->email;
-        $contentOwner->phone = $request->phone;
-        $contentOwner->address = $request->address;
 
         if ($request->hasFile('image')) {
 
