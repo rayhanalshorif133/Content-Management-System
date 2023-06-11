@@ -34,8 +34,8 @@ class ContentOwnerController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = date('Y_m_d_H_i_s_') .  $image->getClientOriginalName();
-            $image->storeAs('public/content-owner', $imageName);
-            $contentOwner->image = 'storage/content-owner/' . $imageName;
+            $image->move('upload/content-owner', $imageName);
+            $contentOwner->image = 'upload/content-owner/' . $imageName;
         }
 
         if ($contentOwner->save()) {
@@ -74,8 +74,8 @@ class ContentOwnerController extends Controller
             }
             $image = $request->file('image');
             $imageName = date('Y_m_d_H_i_s_') .  $image->getClientOriginalName();
-            $image->storeAs('public/content-owner', $imageName);
-            $contentOwner->image = 'storage/content-owner/' . $imageName;
+            $$image->move('upload/content-owner', $imageName);
+            $contentOwner->image = 'upload/content-owner/' . $imageName;
         }
 
         if ($contentOwner->save()) {
