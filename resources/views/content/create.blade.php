@@ -15,22 +15,102 @@
                         </a>
                     </div>
                 </div>
-                <div class="card-body table-responsive p-0">
-                    <table class="table table-hover text-nowrap">
-                        <thead>
-                            <tr>
-                                <th>#sl</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Address</th>
-                                <th>Phone</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
+                <form action="{{ route('content.store') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="card-body p-3">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="category_id" class="required">Select a Category</label>
+                                    <select class="form-control" name="category_id" id="category_id" required>
+                                        <option value="" selected disabled>Select a Category</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="owner_id" class="required">Select a Owner</label>
+                                    <select class="form-control" name="owner_id" id="owner_id" required>
+                                        <option value="" selected disabled>Select a Owner</option>
+                                        @foreach ($owners as $owner)
+                                            <option value="{{ $owner->id }}">{{ $owner->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    {{-- contentTypes --}}
+                                    <label for="content_type_id" class="required">Select a Content Type</label>
+                                    <select class="form-control" name="content_type_id" id="content_type_id" required>
+                                        <option value="" selected disabled>Select a Content Type</option>
+                                        @foreach ($contentTypes as $contentType)
+                                            <option value="{{ $contentType->id }}">{{ $contentType->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="title" class="required">Title</label>
+                                <input type="text" name="title" id="title" class="form-control" required
+                                    placeholder="Enter a title">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="short_des" class="required">Short Description</label>
+                                <textarea name="short_des" id="short_des" class="form-control" placeholder="Enter a short description" required></textarea>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="image" class="optional">Image</label>
+                                <input type="file" name="image" id="image" class="form-control">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="banner_image" class="optional">Banner Image</label>
+                                <input type="file" name="banner_image" id="banner_image" class="form-control">
+                            </div>
+                            <div class="col-md-4">
+                                {{-- description --}}
+                                <label for="description" class="required">Description</label>
+                                <textarea name="description" id="description" class="form-control" required placeholder="Enter a description"></textarea>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="artist_name" class="optional">Artist Name</label>
+                                <input type="text" name="artist_name" id="artist_name" class="form-control"
+                                    placeholder="Enter a artist name">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="price" class="required">Price</label>
+                                <input type="number" name="price" id="price" class="form-control" required
+                                    placeholder="Enter price">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="file_name" class="optional">File Name</label>
+                                <input type="file" name="file_name" id="file_name" class="form-control">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="location" class="optional">Location</label>
+                                <input type="text" name="location" id="location" class="form-control"
+                                    placeholder="Enter a location">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="status" class="optional">Status</label>
+                                <select class="form-control" name="status" id="status">
+                                    <option value="active" selected>Active</option>
+                                    <option value="inactive">Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-footer py-2">
+                        <button type="submit" class="btn btn-outline-info float-left">Submit</button>
+                    </div>
+                </form>
                 <!-- /.card-body -->
             </div>
         </div>
