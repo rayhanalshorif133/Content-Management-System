@@ -52,11 +52,19 @@
                     <div class="form-group">
                         <label for="name" class="required">Name</label>
                         <input type="text" class="form-control" name="name"
-                            placeholder="Enter Content type's name">
+                            placeholder="Enter Content type's name" id="update_content_type_name">
                     </div>
                     <div class="form-group">
                         <label for="name" class="optional">Description</label>
-                        <textarea class="form-control" name="description" placeholder="Enter Content type's description"></textarea>
+                        <textarea class="form-control" name="description" placeholder="Enter Content type's description"
+                            id="update_content_type_description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="optional">Status</label>
+                        <select class="form-control" name="status" id="update_content_type_status">
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
                     </div>
 
                 </div>
@@ -66,7 +74,5 @@
                 </div>
             </form>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>

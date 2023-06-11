@@ -13,6 +13,12 @@ class ContentTypeController extends Controller
         return view('content-type.index', compact('contentTypes'));
     }
 
+    public function fetch($id)
+    {
+        $contentType = ContentType::find($id);
+        return $this->respondWithSuccess('Content type fetched successfully.', $contentType);
+    }
+
     public function create(Request $request)
     {
         $validator = Validator($request->all(), [
@@ -31,11 +37,36 @@ class ContentTypeController extends Controller
             'status' => 'active',
         ]);
 
-        return redirect()->back()->with('success', 'Content type created successfully.');
+        $this->flashMessageSuccess('Content type created successfully.');
+        return redirect()->back();
     }
 
     public function update(Request $request)
     {
-        dd($request->all());
+        $validator = Validator($request->all(), [
+            'name' => 'required|unique:content_types,name,' . $request->content_type_id,
+            'description' => 'nullable|string|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            $this->flashMessageValidatorError($validator->errors()->messages());
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $contentType = ContentType::find($request->content_type_id);
+        $contentType->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'status' => $request->status,
+        ]);
+        $this->flashMessageSuccess('Content type updated successfully.');
+        return redirect()->back();
+    }
+
+    public function delete($id)
+    {
+        $contentType = ContentType::find($id);
+        $contentType->delete();
+        return $this->respondWithSuccess('Content type deleted successfully.');
     }
 }

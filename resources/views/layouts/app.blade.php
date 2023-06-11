@@ -17,6 +17,19 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <link rel="shortcut icon" sizes="32x32" href="{{ asset('dist/img/favicon/shutterstock-favicon-32.png') }}" />
+
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('dist/img/favicon/shutterstock-favicon-57.png') }}" />
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('dist/img/favicon/shutterstock-favicon-72.png') }}" />
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('dist/img/favicon/shutterstock-favicon-114.png') }}" />
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('dist/img/favicon/shutterstock-favicon-120.png') }}" />
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('dist/img/favicon/shutterstock-favicon-152.png') }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('dist/img/favicon/shutterstock-favicon-180.png') }}" />
+    <link rel="icon" sizes="128x128" href="{{ asset('dist/img/favicon/shutterstock-favicon-128.png') }}" />
+    <link rel="icon" sizes="144x144" href="{{ asset('dist/img/favicon/shutterstock-favicon-144.png') }}" />
+    <link rel="icon" sizes="167x167" href="{{ asset('dist/img/favicon/shutterstock-favicon-167.png') }}" />
+    <link rel="icon" sizes="192x192" href="{{ asset('dist/img/favicon/shutterstock-favicon-192.png') }}" />
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 

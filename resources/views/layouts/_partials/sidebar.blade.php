@@ -84,7 +84,7 @@
                 <li class="nav-item">
                     <a href="{{ route('category.index') }}"
                         class="nav-link @if ($routeName == 'category.index') active @endif ">
-                        <i class="nav-icon fas fa-user"></i>
+                        <i class="nav-icon fa-solid fa-recycle"></i>
                         <p>
                             Category
                         </p>
@@ -97,7 +97,7 @@
                 <li class="nav-item">
                     <a href="{{ route('content-owner.index') }}"
                         class="nav-link @if ($routeName == 'content-owner.index') active @endif">
-                        <i class="nav-icon fas fa-user"></i>
+                        <i class="nav-icon fa-solid fa-users"></i>
                         <p>
                             Content Owner
                         </p>
@@ -106,15 +106,16 @@
                 <li class="nav-item">
                     <a href="{{ route('content-type.index') }}"
                         class="nav-link @if ($routeName == 'content-type.index') active @endif ">
-                        <i class="nav-icon fas fa-user"></i>
+                        <i class="nav-icon fa-solid fa-code-compare"></i>
                         <p>
                             Content Type
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
+                    <a href="{{ route('content.index') }}"
+                        class="nav-link @if ($routeName == 'content.index') active @endif ">
+                        <i class="nav-icon fa-solid fa-layer-group"></i>
                         <p>
                             Contents
                         </p>

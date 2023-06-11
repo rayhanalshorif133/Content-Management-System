@@ -74,7 +74,7 @@ class ContentOwnerController extends Controller
             }
             $image = $request->file('image');
             $imageName = date('Y_m_d_H_i_s_') .  $image->getClientOriginalName();
-            $$image->move('upload/content-owner', $imageName);
+            $image->move('upload/content-owner', $imageName);
             $contentOwner->image = 'upload/content-owner/' . $imageName;
         }
 

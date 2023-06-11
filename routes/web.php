@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContentController;
 use App\Http\Controllers\ContentOwnerController;
 use App\Http\Controllers\ContentTypeController;
 use App\Http\Controllers\DashboardController;
@@ -48,6 +49,18 @@ Route::name('category.')
         Route::delete('/delete/{baseOn}/{id}', [CategoryController::class, 'delete'])->name('delete');
     });
 
+// Content
+Route::name('content.')
+    ->prefix('content')
+    ->group(function () {
+        Route::get('/', [ContentController::class, 'index'])->name('index');
+        Route::get('/create', [ContentController::class, 'create'])->name('create');
+        Route::post('/store', [ContentController::class, 'store'])->name('store');
+        Route::get('/{id}/fetch', [ContentController::class, 'fetch'])->name('fetch');
+        Route::post('/update', [ContentController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [ContentController::class, 'delete'])->name('delete');
+    });
+
 // Content Owner
 Route::name('content-owner.')
     ->prefix('content-owner')
@@ -64,7 +77,7 @@ Route::name('content-type.')
     ->group(function () {
         Route::get('/', [ContentTypeController::class, 'index'])->name('index');
         Route::post('/create', [ContentTypeController::class, 'create'])->name('create');
-        Route::get('/edit/{id}', [ContentTypeController::class, 'edit'])->name('edit');
+        Route::get('/{id}/fetch', [ContentTypeController::class, 'fetch'])->name('fetch');
         Route::post('/update', [ContentTypeController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [ContentTypeController::class, 'delete'])->name('delete');
     });
