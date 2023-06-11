@@ -7,7 +7,7 @@ function handleViewBtn() {
             html += `<h5 class="text-center parent_category_name">Name: ${data.name}</h5>`;
             html +=
                 `<p class="text-center text-muted">Status: <span class="badge badge-info">${data.status}</span></p>`;
-            html += `<ul class="list-group list-group-unbordered mb-3">
+            html += `<ul class="list-group list-group-unbordered mb-3 px-3">
                         <li class="list-group-item">
                              <b>#sl</b> <b class="float-right">Name</b>
                         </li>

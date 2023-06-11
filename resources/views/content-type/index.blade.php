@@ -37,7 +37,7 @@
                                         <td><span class="badge badge-success">{{ $contentType->status }}</span></td>
                                         <td>
                                             <div class="btn-group" data-id={{ $contentType->id }}>
-                                                <button type="button" class="btn btn-info btn-sm">
+                                                <button type="button" class="btn btn-info btn-sm contentTypeUpdateBtn">
                                                     <i class="fas fa-edit"></i>
                                                 </button>
                                                 <button type="button" class="btn btn-danger btn-sm contentTypeDeleteBtn">
@@ -54,6 +54,5 @@
             </div>
         </div>
     </div>
-
     @include('content-type.createAndUpdate')
 @endsection

@@ -9,7 +9,7 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <form action="{{ route('content-type.create') }}" method="post">
+            <form action="{{ route('content-type.create') }}" method="post" class="content_type_form">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
@@ -24,7 +24,7 @@
 
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default closeModal" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
