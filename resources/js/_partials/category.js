@@ -1,3 +1,4 @@
+
 function handleViewBtn() {
     const id = $(this).closest('tr').data('id');
     axios.get(`category/fetch-details/${id}`)
@@ -84,9 +85,14 @@ function handleItemDeleteBtn() {
     })
 }
 
+const handleDataTable = () => {
+    $('#categoryTable').DataTable();
+}
+
 export function categoryApp() {
     // category
     $(".categoryViewBtn").click(handleViewBtn);
     $(".categoryDeleteBtn").click(handleDeleteBtn);
     $(".categoryDeleteItemBtn").click(handleItemDeleteBtn);
+    handleDataTable();
 }

@@ -1,5 +1,6 @@
 <?php
 
+use Database\Seeders\ContentSeeder;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -31,12 +32,15 @@ class CreateContentsTable extends Migration
             $table->string('insert_date')->nullable()->default(NULL);
             $table->string('update_date')->nullable()->default(NULL);
             $table->string('approve_date')->nullable()->default(NULL);
-            $table->string('mapping_status')->nullable()->default(NULL);
-            $table->string('owner_status')->nullable()->default(NULL);
+            $table->string('mapping_status')->nullable()->default('active');
+            $table->string('owner_status')->nullable()->default('active');
             $table->string('status')->default('active');
             $table->string('created_by')->nullable()->default(NULL);
             $table->timestamps();
         });
+
+        $contentSeeder = new ContentSeeder();
+        $contentSeeder->run();
     }
 
     /**

@@ -16,19 +16,21 @@
                     </div>
                 </div>
                 <div class="card-body table-responsive p-0">
-                    <table class="table table-hover text-nowrap">
+                    <table class="table table-hover text-nowrap" id="contentTableId">
                         <thead>
                             <tr>
                                 <th>#sl</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Address</th>
-                                <th>Phone</th>
+                                <th>Title</th>
+                                <th>Short <br> Description</th>
+                                <th>Owner Name</th>
+                                <th>Category Name</th>
+                                <th>Price</th>
+                                <th>Location</th>
+                                <th>Created Date</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                        </tbody>
+                        <tbody></tbody>
                     </table>
                 </div>
                 <!-- /.card-body -->
@@ -36,3 +38,16 @@
         </div>
     </div>
 @endsection
+
+@push('js')
+    <script>
+        $(document).ready(function() {
+            $("#contentTableId").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+                ajax: "{{ route('content.fetchData') }}",
+
+            });
+        });
+    </script>
+@endpush

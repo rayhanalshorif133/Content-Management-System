@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Content;
 use App\Models\ContentType;
 use Illuminate\Http\Request;
 
@@ -65,6 +66,12 @@ class ContentTypeController extends Controller
 
     public function delete($id)
     {
+        $findContents = Content::where('type_id', $id)->get();
+
+        if (count($findContents) > 0) {
+            return $this->respondWithError('Content type cannot be deleted because it is being used.');
+        }
+
         $contentType = ContentType::find($id);
         $contentType->delete();
         return $this->respondWithSuccess('Content type deleted successfully.');

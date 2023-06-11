@@ -30,14 +30,23 @@ function handleContentTypeDeleteBtn() {
         if (result.isConfirmed) {
             axios.delete(`content-type/delete/${id}`)
                 .then((result) => {
-                    Swal.fire(
-                        'Deleted!',
-                        result.data.message,
-                        'success'
-                    );
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 1000);
+                    const { data } = result;
+                    if (data.status) {
+                        Swal.fire(
+                            'Deleted!',
+                            result.data.message,
+                            'success'
+                        );
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 1000);
+                    } else {
+                        Swal.fire(
+                            'Failed!',
+                            result.data.message,
+                            'error'
+                        )
+                    }
                 })
         }
     })
@@ -48,9 +57,14 @@ const contentTypeHideModal = () => {
     $('#update-content-type').modal('hide');
 }
 
+const handleDataTable = () => {
+    $('#contentTypeTable').DataTable();
+}
+
 export const contentTypeApp = () => {
     $(".contentTypeDeleteBtn").click(handleContentTypeDeleteBtn);
     $(".contentTypeUpdateBtn").click(handleContentTypeUpdateBtn);
     $(".close").click(contentTypeHideModal);
     $(".closeModal").click(contentTypeHideModal);
+    handleDataTable();
 }

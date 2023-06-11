@@ -55,8 +55,10 @@ Route::name('content.')
     ->group(function () {
         Route::get('/', [ContentController::class, 'index'])->name('index');
         Route::get('/create', [ContentController::class, 'create'])->name('create');
+        Route::get('/fetchData', [ContentController::class, 'fetchData'])->name('fetchData');
+        Route::get('/{id}/view', [ContentController::class, 'view'])->name('view');
         Route::post('/store', [ContentController::class, 'store'])->name('store');
-        Route::get('/{id}/fetch', [ContentController::class, 'fetch'])->name('fetch');
+        Route::get('/{id}/edit', [ContentController::class, 'edit'])->name('edit');
         Route::post('/update', [ContentController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [ContentController::class, 'delete'])->name('delete');
     });

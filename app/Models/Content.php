@@ -31,4 +31,19 @@ class Content extends Model
         'status',
         'created_by',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    public function owner()
+    {
+        return $this->belongsTo(ContentOwner::class, 'owner_id');
+    }
+
+    public function type()
+    {
+        return $this->belongsTo(ContentType::class, 'type_id');
+    }
 }

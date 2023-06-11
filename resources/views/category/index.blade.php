@@ -6,7 +6,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card card-info">
                     <div class="card-header">
                         <h3 class="card-title">
@@ -20,8 +20,8 @@
                             </button>
                         </div>
                     </div>
-                    <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap">
+                    <div class="card-body table-responsive p-3">
+                        <table class="table table-hover" id="categoryTable">
                             <thead>
                                 <tr>
                                     <th>#sl</th>

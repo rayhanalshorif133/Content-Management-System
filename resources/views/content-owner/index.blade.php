@@ -17,8 +17,8 @@
                             </a>
                         </div>
                     </div>
-                    <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap">
+                    <div class="card-body table-responsive p-3">
+                        <table class="table table-hover" id="contentOwnerTable">
                             <thead>
                                 <tr>
                                     <th>#sl</th>

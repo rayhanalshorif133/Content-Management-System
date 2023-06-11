@@ -33,9 +33,12 @@ function handleContentOwnerUpdateBtn() {
 }
 
 
-
+const handleDataTable = () => {
+    $('#contentOwnerTable').DataTable();
+}
 
 export const contentOwnerApp = () => {
     $(".contentOwnerUpdateBtn").click(handleContentOwnerUpdateBtn);
     $(".contentOwnerDeleteBtn").click(handleContentOwnerDeleteBtn);
+    handleDataTable();
 }
