@@ -15,8 +15,8 @@
                         </a>
                     </div>
                 </div>
-                <div class="card-body table-responsive p-0">
-                    <table class="table table-hover text-nowrap" id="contentTableId">
+                <div class="card-body table-responsive p-3">
+                    <table class="table content_table w-100">
                         <thead>
                             <tr>
                                 <th>#sl</th>
@@ -33,7 +33,6 @@
                         <tbody></tbody>
                     </table>
                 </div>
-                <!-- /.card-body -->
             </div>
         </div>
     </div>
@@ -42,12 +41,75 @@
 @push('js')
     <script>
         $(document).ready(function() {
-            $("#contentTableId").DataTable({
-                "responsive": true,
-                "autoWidth": false,
-                ajax: "{{ route('content.fetchData') }}",
+            $(function() {
+                var table = $('.content_table').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: "{{ route('content.index') }}",
+                    columns: [{
+                            render: function(data, type, row) {
+                                return row.DT_RowIndex;
+                            },
+                            targets: 0,
+                        },
+                        {
+                            data: 'title',
+                            name: 'title'
+                        },
+                        {
+                            data: 'short_des',
+                            name: 'short_des'
+                        },
+                        {
+                            data: 'owner.name',
+                            name: 'owner.name'
+                        },
+                        {
+                            data: 'category.name',
+                            name: 'category.name'
+                        },
+                        {
+                            data: 'price',
+                            name: 'price'
+                        },
+                        {
+                            render: function(data, type, row) {
+                                let location = row.location ? row.location : 'Not Set';
+                                return location;
+                            },
+                            targets: 0,
+                        },
+                        {
+                            render: function(data, type, row) {
+                                let insert_date = row.insert_date ? row.insert_date :
+                                    'Not Set';
+                                return insert_date;
+                            },
+                            targets: 0,
+                        },
+                        {
+                            data: 'action',
+                            name: 'action',
+                            orderable: false,
+                            searchable: false
+                        },
+                    ]
+                });
 
             });
+
+
+            getUserButtons = (name, id, auth_user) => {
+                let buttons = `
+            <div class="btn-group" id=${name}-${id}>
+                <a href="${name}/${id}/view" class="btn btn-sm btn-outline-success"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                <a href="${name}/${id}/edit" class="btn btn-sm btn-outline-info"><i class="fa fa-pen" aria-hidden="true"></i></a>
+                ${auth_user? "" : '<a href="#" class="btn btn-sm btn-outline-danger deleteBtn"><i class="fa fa-trash" aria-hidden="true"></i></a>'}
+
+            </div>
+            `;
+                return buttons;
+            }
         });
     </script>
 @endpush

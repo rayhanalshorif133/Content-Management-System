@@ -8,22 +8,24 @@ use App\Models\Content;
 use App\Models\ContentType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\View\View;
 use Symfony\Component\Finder\SplFileInfo;
 use Yajra\DataTables\Facades\DataTables;
 
 class ContentController extends Controller
 {
-    public function index(Request $request): View
+    public function index(Request $request)
     {
-
 
         if ($request->ajax()) {
             $contents = Content::select()
+                ->orderBy('id', 'desc')
                 ->with('category', 'owner', 'type')
                 ->get();
             return DataTables::of($contents)
                 ->addIndexColumn()
+                ->addColumn('insert_date', function ($content) {
+                    return date('d-m-Y H:m:s A', strtotime($content->insert_date));
+                })
                 ->addColumn('action', function ($content) {
                     $edit = '<a href="' . route('content.edit', $content->id) . '" class="btn btn-sm btn-primary">Edit</a>';
                     $view = '<a href="' . route('content.view', $content->id) . '" class="btn btn-sm btn-success">View</a>';

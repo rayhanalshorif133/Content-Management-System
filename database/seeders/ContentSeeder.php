@@ -15,7 +15,7 @@ class ContentSeeder extends Seeder
     public function run()
     {
 
-        for ($index = 0; $index < 500; $index++) {
+        for ($index = 0; $index < 20; $index++) {
             Content::create([
                 'category_id' => 1,
                 'owner_id'  => 1,
@@ -25,7 +25,8 @@ class ContentSeeder extends Seeder
                 'description' => 'description',
                 'artist_name' => 'artist',
                 'price' => 12 * $index,
-                'created_by' => "admin"
+                'created_by' => "admin",
+                'insert_date' => date('Y-m-d H:i:s'),
             ]);
         }
     }

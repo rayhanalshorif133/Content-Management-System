@@ -10,10 +10,9 @@
                         Content Details
                     </h3>
                     <div class="card-tools">
-                        <button type="button" class="btn btn-outline-add btn-tool" data-toggle="modal"
-                            data-target="#create-category">
-                            <i class="fas fa-plus"></i> Add
-                        </button>
+                        <a href="{{ route('content.index') }}" class="btn btn-outline-back btn-tool">
+                            <i class="fas fa-arrow-left"></i> Back
+                        </a>
                     </div>
                 </div>
                 <div class="card-body">
