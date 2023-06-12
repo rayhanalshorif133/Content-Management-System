@@ -1,5 +1,7 @@
+
 function handleContentDeleteBtn() {
     var id = $(this).parent().attr("data-id");
+    console.log(id);
     Swal.fire({
         title: 'Are you sure?',
         text: "You can't bring it back!",
@@ -26,5 +28,5 @@ function handleContentDeleteBtn() {
 }
 
 export const contentApp = () => {
-    $(".contentDeleteBtn").click(handleContentDeleteBtn);
+    $(document).on('click', '.contentDeleteBtn', handleContentDeleteBtn);
 };

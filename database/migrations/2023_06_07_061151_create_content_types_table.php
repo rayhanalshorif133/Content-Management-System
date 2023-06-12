@@ -22,8 +22,8 @@ class CreateContentTypesTable extends Migration
             $table->timestamps();
         });
 
-        $contentTypeSeeder = new ContentTypeSeeder();
-        $contentTypeSeeder->run();
+        // $contentTypeSeeder = new ContentTypeSeeder();
+        // $contentTypeSeeder->run();
     }
 
     /**

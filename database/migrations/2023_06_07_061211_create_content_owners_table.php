@@ -22,8 +22,8 @@ class CreateContentOwnersTable extends Migration
         });
 
         // Insert some stuff
-        $contentOwnerSeeder = new ContentOwnerSeeder();
-        $contentOwnerSeeder->run();
+        // $contentOwnerSeeder = new ContentOwnerSeeder();
+        // $contentOwnerSeeder->run();
     }
 
     /**

@@ -16,18 +16,25 @@ class CategorySeeder extends Seeder
     public function run()
     {
 
-        $category = Category::create([
-            'name' => 'Category 1',
-            'description' => 'Category 1 Description',
+        Category::create([
+            'name' => 'Popular',
+            'description' => 'Popular Game Description',
             'status' => 'active',
             'created_by' => 1,
             'updated_by' => 1,
         ]);
 
-        SubCategory::create([
-            'category_id' => $category->id,
-            'name' => 'Category 1 sub',
-            'description' => 'Category 1 Description',
+        Category::create([
+            'name' => 'New',
+            'description' => 'New Game Description',
+            'status' => 'active',
+            'created_by' => 1,
+            'updated_by' => 1,
+        ]);
+
+        Category::create([
+            'name' => 'Recommended',
+            'description' => 'Recommended Game Description',
             'status' => 'active',
             'created_by' => 1,
             'updated_by' => 1,

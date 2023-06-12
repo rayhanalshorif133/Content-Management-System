@@ -27,10 +27,11 @@ class ContentController extends Controller
                     return date('d-m-Y H:m:s A', strtotime($content->insert_date));
                 })
                 ->addColumn('action', function ($content) {
-                    $edit = '<a href="' . route('content.edit', $content->id) . '" class="btn btn-sm btn-primary">Edit</a>';
-                    $view = '<a href="' . route('content.view', $content->id) . '" class="btn btn-sm btn-success">View</a>';
-                    $delete = '<a href="' . route('content.delete', $content->id) . '" class="btn btn-sm btn-danger">Delete</a>';
-                    return $edit . ' ' . $view . ' ' . $delete;
+                    $view = '<div class="btn-group" data-id="' . $content->id . '">
+                    <a href="' . route('content.view', $content->id) . '" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></a>';
+                    $edit = '<a href="' . route('content.edit', $content->id) . '" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>';
+                    $delete = '<button class="contentDeleteBtn btn btn-sm btn-danger"><i class="fas fa-trash"></i></button></div>';
+                    return $view . $edit .  $delete;
                 })
                 ->rawColumns(['action'])
                 ->make(true);

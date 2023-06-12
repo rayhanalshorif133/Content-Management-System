@@ -39,8 +39,8 @@ class CreateContentsTable extends Migration
             $table->timestamps();
         });
 
-        $contentSeeder = new ContentSeeder();
-        $contentSeeder->run();
+        // $contentSeeder = new ContentSeeder();
+        // $contentSeeder->run();
     }
 
     /**

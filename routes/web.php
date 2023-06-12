@@ -6,6 +6,8 @@ use App\Http\Controllers\ContentController;
 use App\Http\Controllers\ContentOwnerController;
 use App\Http\Controllers\ContentTypeController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +22,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WebController::class, 'home'])->name('home');
 
 // admin routes
 Route::name('admin.')
@@ -83,3 +83,10 @@ Route::name('content-type.')
         Route::post('/update', [ContentTypeController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [ContentTypeController::class, 'delete'])->name('delete');
     });
+
+
+
+
+// Web Routes
+Route::get('details/{id}', [WebController::class, 'details'])->name('details');
+Route::get('faq', [WebController::class, 'faq_index'])->name('faq.index');
