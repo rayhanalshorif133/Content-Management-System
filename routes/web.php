@@ -7,6 +7,7 @@ use App\Http\Controllers\ContentOwnerController;
 use App\Http\Controllers\ContentTypeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -38,7 +39,7 @@ Route::name('admin.')
 
 // Category
 Route::name('category.')
-    ->prefix('category')
+    ->prefix('admin/category')
     ->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('index');
         Route::get('/fetch-details/{id}', [CategoryController::class, 'fetchDetails'])->name('fetch-details');
@@ -87,6 +88,28 @@ Route::name('content-type.')
 
 
 
+
+
 // Web Routes
-Route::get('details/{id}', [WebController::class, 'details'])->name('details');
+Route::get('content/details/{id}', [WebController::class, 'contentDetails'])->name('content.details');
+// subscriber
+Route::name('category.')
+    ->prefix('category/')
+    ->group(
+        function () {
+            Route::get('/', [WebController::class, 'categoryIndex'])->name('index');
+            Route::get('/{id}', [WebController::class, 'categoryDetails'])->name('details');
+        }
+    );
 Route::get('faq', [WebController::class, 'faq_index'])->name('faq.index');
+Route::get('faq', [WebController::class, 'faq_index'])->name('faq.index');
+
+// subscriber
+Route::name('subscriber.')
+    ->prefix('subscriber/')
+    ->group(function () {
+        Route::get('confirmation', [SubscriberController::class, 'subscriberConfirmation'])->name('confirmation');
+        Route::get('confirmed', [SubscriberController::class, 'subscriberConfirmed'])->name('confirmed');
+        Route::get('cancel-confirmation', [SubscriberController::class, 'subscriberCancelConfirmation'])->name('cancel-confirmation');
+        Route::get('cancel-confirmed', [SubscriberController::class, 'subscriberCancelConfirmed'])->name('cancel-confirmed');
+    });

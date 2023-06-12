@@ -22,9 +22,11 @@
                             <a class="nav-link" href="#">
                                 &nbsp Home <span class="sr-only">(current)</span></a>
                         </li>
-                        @foreach ($categories as $categorie)
+                        @foreach ($categories as $category)
                             <li class="nav-item">
-                                <a class="nav-link" href="#"> &nbsp {{ $categorie->name }} Game</a>
+                                <a class="nav-link" href="{{ route('category.details', $category->id) }}"> &nbsp
+                                    {{ $category->name }}
+                                    Game</a>
                             </li>
                         @endforeach
                     </ul>
@@ -55,9 +57,10 @@
                         <a class="nav-link" href="#">
                             &nbsp Home <span class="sr-only">(current)</span></a>
                     </li>
-                    @foreach ($categories as $categorie)
+                    @foreach ($categories as $category)
                         <li class="nav-item">
-                            <a class="nav-link" href="#"> &nbsp {{ $categorie->name }}</a>
+                            <a class="nav-link" href="{{ route('category.details', $category->id) }}"> &nbsp
+                                {{ $category->name }}</a>
                         </li>
                     @endforeach
                 </ul>

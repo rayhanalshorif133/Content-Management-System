@@ -31,11 +31,5 @@ class ContentTypeSeeder extends Seeder
             'description' => 'Wallpaper',
             'status' => 'active',
         ]);
-
-        ContentType::create([
-            'name' => 'Text',
-            'description' => 'Text',
-            'status' => 'active',
-        ]);
     }
 }

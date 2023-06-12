@@ -128,4 +128,32 @@
       },
     },
   });
+
+
+  // dynamic owl Carousel
+  /*
+   <section id="section_two" class="section_carousel" data-value="{{ $categories->count() }}"
+  */
+  const length = $(".section_carousel").attr("data-value");
+  for (let index = 0; index < length; index++) {
+    $(`#carousel_${index}`).owlCarousel({
+      loop: true,
+      margin: 10,
+      responsive: {
+        0: {
+          items: 3,
+        },
+        769: {
+          items: 3,
+        },
+        992: {
+          items: 3,
+        },
+      },
+    });
+
+  }
+
+
+
 })(jQuery);

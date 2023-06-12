@@ -9,12 +9,17 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <form action="{{ route('category.create') }}" method="post">
+            <form action="{{ route('category.create') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
+                        <label for="image" class="required">Image</label>
+                        <input type="file" class="form-control" name="image" required>
+                    </div>
+                    <div class="form-group">
                         <label for="name" class="required">Name</label>
-                        <input type="text" class="form-control" name="name" placeholder="Enter category name">
+                        <input type="text" class="form-control" name="name" required
+                            placeholder="Enter category name">
                     </div>
                     <div class="form-group">
                         <label for="name" class="optional">Parent Category</label>

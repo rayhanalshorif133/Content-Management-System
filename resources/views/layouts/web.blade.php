@@ -23,6 +23,7 @@
 </head>
 
 <body>
+
     @yield('content')
     <!--/ footer Star /-->
     @include('layouts._partials.web.footer')
@@ -38,6 +39,18 @@
     <script src="{{ asset('web/dist/owlcarousel/owl.carousel.js') }}"></script>
     <script src="{{ asset('web/dist/scrollreveal/scrollreveal.min.js') }}"></script>
     <script src="{{ asset('web/js/main.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $(window).scroll(function(e) {
+                $el = $('.nav-top-item');
+                if ($(this).scrollTop() > 30) {
+                    $('.nav-top-item').addClass("fixedNav");
+                } else {
+                    $('.nav-top-item').removeClass("fixedNav");
+                }
+            });
+        });
+    </script>
     @stack('js');
 
 </body>

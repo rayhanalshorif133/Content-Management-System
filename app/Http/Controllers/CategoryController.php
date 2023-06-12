@@ -35,14 +35,26 @@ class CategoryController extends Controller
     public function create(Request $request)
     {
         if ($request->parent_category) {
-            SubCategory::create([
-                'name' => $request->name,
-                'category_id' => $request->parent_category,
-            ]);
+            $subCategory = new SubCategory();
+            $subCategory->name = $request->name;
+            $subCategory->category_id = $request->parent_category;
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $imageName = date('Y_m_d_H_i_s_') .  $image->getClientOriginalName();
+                $image->move('upload/subCategory/image', $imageName);
+                $subCategory->image = 'upload/subCategory/image/' . $imageName;
+            }
+            $subCategory->save();
         } else {
-            Category::create([
-                'name' => $request->name,
-            ]);
+            $category = new Category();
+            $category->name = $request->name;
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $imageName = date('Y_m_d_H_i_s_') .  $image->getClientOriginalName();
+                $image->move('upload/category/image', $imageName);
+                $category->image = 'upload/category/image/' . $imageName;
+            }
+            $category->save();
         }
 
         $this->flashMessageSuccess('Category Created Successfully');
