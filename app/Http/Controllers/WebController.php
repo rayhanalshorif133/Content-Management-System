@@ -25,7 +25,10 @@ class WebController extends Controller
     public function home()
     {
         $newCategoryId = Category::select('id')->where('name', 'like', '%new%')->first();
-        $newContents = Content::select('id', 'title', 'image', 'banner_image')->where('category_id', $newCategoryId->id)->get();
+        $newContents = Content::select('id', 'title', 'image', 'banner_image')
+            ->where('category_id', $newCategoryId->id)
+            ->with('category')
+            ->get();
 
 
         $categories = Category::select('id', 'name')
@@ -35,7 +38,7 @@ class WebController extends Controller
             }])
             ->get();
 
-        return view('web.home', compact('newContents', 'categories'));
+        return view('web.home', compact('newContents', 'categories', 'newCategoryId'));
     }
 
     public function contentDetails($id)

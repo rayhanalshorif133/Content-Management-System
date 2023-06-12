@@ -13,33 +13,36 @@
         </div>
         @include('layouts._partials.web.subscribe')
         <!--/ Section one Star /-->
-        <section id="section_one">
-            <div class="wrap-one  d-flex justify-content-between">
-                <div class="title-box">
-                    <h3 class="title-a">New Release</h3>
-                </div>
-                <div class="more-link">
-                    <a href="#">see all
-                        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </div>
-            <div id="one_carousel" class="owl-carousel">
-                @foreach ($newContents as $newContent)
-                    <div class="carousel-item-b">
-                        <div class="card-box-a card-shadow">
-                            <a href={{ route('content.details', $newContent->id) }}>
-                                <img class="card-img-top cover img-responsive" src="{{ asset($newContent->banner_image) }}"
-                                    alt="Card image cap ">
-                                <p class="card-text text-center text-white">
-                                    {{ $newContent->title }}
-                                </p>
-                            </a>
-                        </div>
+
+        @if (count($newContents) > 0)
+            <section id="section_one">
+                <div class="wrap-one  d-flex justify-content-between">
+                    <div class="title-box">
+                        <h3 class="title-a">New Release</h3>
                     </div>
-                @endforeach
-            </div>
-        </section>
+                    <div class="more-link">
+                        <a href="{{ route('category.details', $newCategoryId->id) }}">see all
+                            <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div id="one_carousel" class="owl-carousel">
+                    @foreach ($newContents as $newContent)
+                        <div class="carousel-item-b">
+                            <div class="card-box-a card-shadow">
+                                <a href={{ route('content.details', $newContent->id) }}>
+                                    <img class="card-img-top cover img-responsive"
+                                        src="{{ asset($newContent->banner_image) }}" alt="Card image cap ">
+                                    <p class="card-text text-center text-white">
+                                        {{ $newContent->title }}
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </section>
+        @endif
         <!--/ Section one End /-->
 
         @foreach ($categories as $key => $item)
@@ -58,7 +61,7 @@
                         <h3 class="title-a">{{ $item->name }}</h3>
                     </div>
                     <div class="more-link">
-                        <a href="#">see all
+                        <a href="{{ route('category.details', $item->id) }}">see all
                             <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
                         </a>
                     </div>
@@ -68,8 +71,8 @@
                         <div class="carousel-item-b">
                             <div class="card-box-a card-shadow">
                                 <a href={{ route('content.details', $content->id) }}>
-                                    <img class="card-img-top cover img-responsive" src="{{ asset($content->banner_image) }}"
-                                        alt="Card image cap ">
+                                    <img class="card-img-top cover img-responsive"
+                                        src="{{ asset($content->banner_image) }}" alt="Card image cap ">
                                     <p class="card-text text-center text-white">{{ $content->title }}</p>
                                 </a>
                             </div>
