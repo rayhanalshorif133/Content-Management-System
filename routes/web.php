@@ -116,6 +116,8 @@ Route::name('category.')
         }
     );
 Route::get('faq', [WebController::class, 'faq_index'])->name('faq.index');
+Route::get('help', [WebController::class, 'help'])->name('help.index');
+Route::get('terms-condition', [WebController::class, 'terms_condition'])->name('terms-condition.index');
 
 // subscriber
 Route::name('subscriber.')

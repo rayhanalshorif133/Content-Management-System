@@ -162,50 +162,6 @@
                                 </div>
                             @endforeach
 
-                            {{-- <div class="card">
-                                <div class="card-header" id="headingOne">
-                                    <h2 class="mb-0">
-                                        <button class="btn btn-link btn-block text-left" type="button"
-                                            data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-                                            aria-controls="collapseOne">
-                                            1. What is WWE
-                                        </button>
-                                    </h2>
-                                </div>
-
-                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                                    data-parent="#accordionExample">
-                                    <div class="card-body text-justify">
-                                        It is a WAP based portal for Bangladeshi users. WWE portal contains video and
-                                        wallpaper of various events of world wrestling entertainment. The portal will be
-                                        accessible to mobile user with active data subscribers who will browse using
-                                        3G/EDGE/GPRS connection on mobile browser and watch unlimited video by streaming and
-                                        download Unlimited contents per day. To watch/Download any content users have to
-                                        subscribe to this service with the charge as low as TK 2 +(VAT, SD and SC)/day
-                                        (auto-renewable).
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" id="headingTwo">
-                                    <h2 class="mb-0">
-                                        <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                            data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
-                                            aria-controls="collapseTwo">
-                                            2. How do I start Streaming in my Mobile?
-                                        </button>
-                                    </h2>
-                                </div>
-                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                    data-parent="#accordionExample">
-                                    <div class="card-body text-justify">
-                                        Find your desired content, click on the content click on the watch now button to
-                                        start streaming automatically. If default player is not selected for the streaming
-                                        the mobile might ask to choose a player for streaming.
-                                    </div>
-                                </div>
-                            </div> --}}
-
                         </div>
                     </div>
                 </div>
