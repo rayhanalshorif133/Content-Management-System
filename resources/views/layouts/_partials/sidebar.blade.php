@@ -82,8 +82,8 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('category.index') }}"
-                        class="nav-link @if ($routeName == 'category.index') active @endif ">
+                    <a href="{{ route('admin.category.index') }}"
+                        class="nav-link @if ($routeName == 'admin.category.index') active @endif ">
                         <i class="nav-icon fa-solid fa-recycle"></i>
                         <p>
                             Category

@@ -48,7 +48,7 @@
                                                     data-toggle="modal" data-target="#view-category">
                                                     <i class="fas fa-eye"></i>
                                                 </button>
-                                                <a href="{{ route('category.edit', $category->id) }}"
+                                                <a href="{{ route('admin.category.edit', $category->id) }}"
                                                     class="btn btn-info btn-sm">
                                                     <i class="fas fa-edit"></i>
                                                 </a>

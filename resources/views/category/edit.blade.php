@@ -14,7 +14,7 @@
                             Category Edit
                         </h3>
                     </div>
-                    <form action="{{ route('category.update', $category->id) }}" method="POST">
+                    <form action="{{ route('admin.category.update', $category->id) }}" method="POST">
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
@@ -60,7 +60,8 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <a href="{{ route('category.index') }}" class="btn btn-outline-danger btn-sm float-left">Back
+                            <a href="{{ route('admin.category.index') }}"
+                                class="btn btn-outline-danger btn-sm float-left">Back
                             </a>
                             {{-- update --}}
                             <button type="submit" class="btn btn-outline-success btn-sm float-right">Update</button>

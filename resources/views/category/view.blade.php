@@ -11,11 +11,8 @@
             </div>
             <div class="modal-body box-category">
                 <h3 class="text-center parent_category_name"></h3>
-                <p class="text-muted text-center">Software Engineer</p>
+                <p class="text-muted text-center"></p>
                 <ul class="list-group list-group-unbordered mb-3">
-                    <li class="list-group-item">
-                        <b>Followers</b> <a class="float-right">1,322</a>
-                    </li>
                 </ul>
             </div>
             <div class="modal-footer justify-content-end">

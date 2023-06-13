@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Content;
 use App\Models\SubCategory;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
@@ -108,6 +109,13 @@ class CategoryController extends Controller
 
     public function delete($baseOn, $id)
     {
+
+        $hasContents = Content::where('category_id', $id)->first();
+
+        if ($hasContents) {
+            return $this->respondWithError("This category has contents. Please delete contents first");
+        }
+
         if ($baseOn == 'parent') {
             $category = Category::find($id);
             $subCategories = SubCategory::where('category_id', $id)->get();

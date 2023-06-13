@@ -38,7 +38,7 @@ Route::name('admin.')
     });
 
 // Category
-Route::name('category.')
+Route::name('admin.category.')
     ->prefix('admin/category')
     ->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('index');

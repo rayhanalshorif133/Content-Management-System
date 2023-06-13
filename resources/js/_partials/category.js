@@ -44,14 +44,25 @@ function handleDeleteBtn() {
         if (result.isConfirmed) {
             axios.delete(`category/delete/parent/${id}`)
                 .then((result) => {
-                    Swal.fire(
-                        'Deleted!',
-                        result.data.message,
-                        'success'
-                    );
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 1000);
+                    console.log(result);
+                    const { status } = result.data;
+                    console.log(result.data.message);
+                    if (status == true) {
+                        Swal.fire(
+                            'Deleted!',
+                            result.data.message,
+                            'success'
+                        );
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 1000);
+                    } else {
+                        Swal.fire(
+                            'Danger!',
+                            result.data.message,
+                            'error'
+                        );
+                    }
                 })
         }
     })

@@ -9,7 +9,7 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <form action="{{ route('category.create.sub-category') }}" method="post">
+            <form action="{{ route('admin.category.create.sub-category') }}" method="post">
                 @csrf
                 <div class="modal-body">
                     <input type="hidden" class="form-control" name="parent_id" value="{{ $category->id }}">
