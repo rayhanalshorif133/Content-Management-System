@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class SubscriberController extends Controller
 {
+
     public function subscriberConfirmation()
     {
         $phone = $this->get_msisdn();

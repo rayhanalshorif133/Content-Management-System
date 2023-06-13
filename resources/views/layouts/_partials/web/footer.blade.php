@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-2" style="font-size: 0.979375rem;">
-                <a href="#" class="text-white">FAQ</a>
+                <a href="{{ route('faq.index') }}" class="text-white">FAQ</a>
             </div>
             <div class="col-8">
                 <div class="copyright-footer">

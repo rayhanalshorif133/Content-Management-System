@@ -11,6 +11,7 @@ use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,19 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// clear routes
+Route::get('clear', function () {
+    Artisan::call('view:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    Artisan::call('config:clear');
+    Artisan::call('optimize:clear');
+    Artisan::call('config:cache');
+    Artisan::call('optimize');
+    Artisan::call('route:cache');
+    return "Cleared!";
+});
 
 Route::get('/', [WebController::class, 'home'])->name('home');
 
@@ -102,7 +116,6 @@ Route::name('category.')
         }
     );
 Route::get('faq', [WebController::class, 'faq_index'])->name('faq.index');
-Route::get('faq', [WebController::class, 'faq_index'])->name('faq.index');
 
 // subscriber
 Route::name('subscriber.')
@@ -113,3 +126,6 @@ Route::name('subscriber.')
         Route::get('cancel-confirmation', [SubscriberController::class, 'subscriberCancelConfirmation'])->name('cancel-confirmation');
         Route::get('cancel-confirmed', [SubscriberController::class, 'subscriberCancelConfirmed'])->name('cancel-confirmed');
     });
+
+
+
