@@ -66,12 +66,14 @@
                                 <textarea name="short_des" id="short_des" class="form-control" placeholder="Enter a short description" required></textarea>
                             </div>
                             <div class="col-md-4">
-                                <label for="image" class="optional">Image</label>
-                                <input type="file" name="image" id="image" class="form-control">
+                                <label for="image" class="required">Image</label>
+                                <input type="file" name="image" required id="image" class="form-control">
+                                <small class="text-muted"><span class="required">Image size</span> must be 1200x675</small>
                             </div>
                             <div class="col-md-4">
-                                <label for="banner_image" class="optional">Banner Image</label>
-                                <input type="file" name="banner_image" id="banner_image" class="form-control">
+                                <label for="banner_image" class="required">Banner Image</label>
+                                <input type="file" name="banner_image" required id="banner_image" class="form-control">
+                                <small class="text-muted"><span class="required">Image size</span> must be 1200x675</small>
                             </div>
                             <div class="col-md-4">
                                 {{-- description --}}
@@ -89,8 +91,8 @@
                                     placeholder="Enter price">
                             </div>
                             <div class="col-md-4">
-                                <label for="file_name" class="optional">File Name</label>
-                                <input type="file" name="file_name" id="file_name" class="form-control">
+                                <label for="file_name" class="required">Content File</label>
+                                <input type="file" name="file_name" id="file_name" class="form-control" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="location" class="optional">Location</label>

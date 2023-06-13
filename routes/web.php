@@ -8,6 +8,7 @@ use App\Http\Controllers\ContentTypeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\SubscriberController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -45,15 +46,28 @@ Route::name('admin.')
     ->group(function () {
         Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
         Route::post('/submit', [AuthController::class, 'loginFormSubmit'])->name('login.submit');
-        Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+        Route::post('/logout', [AuthController::class, 'logout'])
+        ->middleware('auth')
+        ->name('logout');
 
         // dashboard
-        Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'dashboard'])
+         ->middleware('auth')
+        ->name('dashboard');
     });
+
+Route::name('user.')
+    ->prefix('user')
+    ->middleware('auth')
+    ->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('index');
+    });
+
 
 // Category
 Route::name('admin.category.')
     ->prefix('admin/category')
+    ->middleware('auth')
     ->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('index');
         Route::get('/fetch-details/{id}', [CategoryController::class, 'fetchDetails'])->name('fetch-details');
@@ -67,6 +81,7 @@ Route::name('admin.category.')
 // Content
 Route::name('content.')
     ->prefix('content')
+    ->middleware('auth')
     ->group(function () {
         Route::get('/', [ContentController::class, 'index'])->name('index');
         Route::get('/create', [ContentController::class, 'create'])->name('create');
@@ -81,6 +96,7 @@ Route::name('content.')
 // Content Owner
 Route::name('content-owner.')
     ->prefix('content-owner')
+    ->middleware('auth')
     ->group(function () {
         Route::get('/', [ContentOwnerController::class, 'index'])->name('index');
         Route::post('/store', [ContentOwnerController::class, 'store'])->name('store');
@@ -91,6 +107,7 @@ Route::name('content-owner.')
 // Content Types
 Route::name('content-type.')
     ->prefix('content-type')
+    ->middleware('auth')
     ->group(function () {
         Route::get('/', [ContentTypeController::class, 'index'])->name('index');
         Route::post('/create', [ContentTypeController::class, 'create'])->name('create');
