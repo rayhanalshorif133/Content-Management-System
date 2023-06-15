@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Symfony\Component\Finder\SplFileInfo;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class ContentController extends Controller
 {
@@ -43,6 +45,9 @@ class ContentController extends Controller
 
     public function create()
     {
+
+        
+
         $categories = Category::all();
         $owners = ContentOwner::all();
         $contentTypes = ContentType::all();
@@ -122,14 +127,16 @@ class ContentController extends Controller
         $content->description = $request->description;
         $content->artist_name = $request->artist_name;
         $content->price = $request->price;
-        if ($request->file('file_name')) {
-            $image = $request->file('file_name');
-            $imageName = date('Y_m_d_H_i_s_') .  $image->getClientOriginalName();
-            $image->move('upload/content/file', $imageName);
-            $content->file_name = 'upload/content/file/' . $imageName;
-            $info = new SplFileInfo($content->file_name, '', '');
-            $content->file_size = $info->getSize();
+        $filename = '';
+        if ($request->file_name_path) {
+            // File
+            $path = $request->file_name_path;
+            $target = 'upload/content/file/hi.mp4';
+            $file = File::move($path, $target);
+            $content->file_name = $target;
         }
+        $info = new SplFileInfo($filename, '', '');
+        $content->file_size = $info->getSize();
         $content->location = $request->location;
         $content->insert_date = now();
         $content->update_date = now();
@@ -146,6 +153,8 @@ class ContentController extends Controller
             return redirect()->back()->withInput();
         }
     }
+
+
     public function update(Request $request)
     {
         $validator = Validator($request->all(), [
@@ -186,12 +195,12 @@ class ContentController extends Controller
         $content->description = $request->description;
         $content->artist_name = $request->artist_name;
         $content->price = $request->price;
-        if ($request->file('file_name')) {
-            $image = $request->file('file_name');
-            $imageName = date('Y_m_d_H_i_s_') .  $image->getClientOriginalName();
-            $image->move('upload/content/file', $imageName);
-            $content->file_name = 'upload/content/file/' . $imageName;
-            $info = new SplFileInfo($content->file_name, '', '');
+        if ($request->file_name_path) {
+            // unlink
+            $file = $content->file_name;
+            unlink($file);
+            $content->file_name = $request->file_name_path;
+            $info = new SplFileInfo($request->file_name_path, '', '');
             $content->file_size = $info->getSize();
         }
         $content->location = $request->location;

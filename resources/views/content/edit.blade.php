@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('style')
+    <style>
+        .card-footer,
+        .progress {
+            display: none;
+        }
+    </style>
+@endsection
 @section('content')
     <div class="row justify-content-center px-3">
         <div class="col-md-12">
@@ -92,6 +100,16 @@
                             <div class="col-md-4">
                                 <label for="file_name" class="optional">File Name</label>
                                 <input type="file" name="file_name" id="file_name" class="form-control">
+                                <input type="hidden" name="file_name_path" id="file_name_path" class="form-control">
+                                <div class="progress mt-3" style="height: 25px">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                        role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                        style="width: 75%; height: 100%">75%</div>
+                                </div>
+                                <div class="card-footer p-4">
+                                    <video id="videoPreview" src="" controls
+                                        style="width: 100%; height: auto"></video>
+                                </div>
                             </div>
                             <div class="col-md-4">
                                 <label for="location" class="optional">Location</label>
@@ -122,3 +140,66 @@
         </div>
     </div>
 @endsection
+
+@push('js')
+    <script src="https://cdn.jsdelivr.net/npm/resumablejs@1.1.0/resumable.min.js"></script>
+
+    <script type="text/javascript">
+        let browseFile = $('#file_name');
+        let resumable = new Resumable({
+            target: '{{ route('upload.files') }}',
+            query: {
+                _token: '{{ csrf_token() }}',
+            }, // CSRF token
+            fileType: ['mp4'],
+            headers: {
+                'Accept': 'application/json',
+                'path': 'upload/content/file',
+            },
+            testChunks: false,
+            throttleProgressCallbacks: 1,
+        });
+
+        resumable.assignBrowse(browseFile[0]);
+
+        resumable.on('fileAdded', function(file) { // trigger when file picked
+            showProgress();
+            resumable.upload() // to actually start uploading.
+        });
+
+        resumable.on('fileProgress', function(file) { // trigger when file progress update
+            updateProgress(Math.floor(file.progress() * 100));
+        });
+
+        resumable.on('fileSuccess', function(file, response) { // trigger when file upload complete
+            response = JSON.parse(response);
+            console.log(response);
+            $('#videoPreview').attr('src', response.path);
+            $('.card-footer').show();
+            $('#file_name_path').val(response.storage_path);
+        });
+
+        resumable.on('fileError', function(file, response) { // trigger when there is any error
+            alert('file uploading error.')
+        });
+
+
+        let progress = $('.progress');
+
+        function showProgress() {
+            progress.find('.progress-bar').css('width', '0%');
+            progress.find('.progress-bar').html('0%');
+            progress.find('.progress-bar').removeClass('bg-success');
+            progress.show();
+        }
+
+        function updateProgress(value) {
+            progress.find('.progress-bar').css('width', `${value}%`)
+            progress.find('.progress-bar').html(`${value}%`)
+        }
+
+        function hideProgress() {
+            progress.hide();
+        }
+    </script>
+@endpush

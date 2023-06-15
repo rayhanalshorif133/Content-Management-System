@@ -39,10 +39,13 @@ Route::get('clear', function () {
     return "Cleared!";
 });
 
+
+// phpinfo
 Route::get('phpinfo', function () {
     phpinfo();
     echo "phpinfo";
 })->name('phpmyinfo');
+
 
 Route::get('/', [WebController::class, 'home'])->name('home');
 
@@ -159,4 +162,4 @@ Route::name('subscriber.')
 
 
 Route::get('file-upload', [FileUploadController::class, 'index'])->name('files.index');
-Route::post('file-upload/upload-large-files', [FileUploadController::class, 'uploadLargeFiles'])->name('files.upload.large');
+Route::post('file-upload/upload-large-files/', [FileUploadController::class, 'uploadFiles'])->name('upload.files');
