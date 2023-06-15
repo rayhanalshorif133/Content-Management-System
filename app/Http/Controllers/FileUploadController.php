@@ -30,6 +30,7 @@ class FileUploadController extends Controller
         }
 
         $fileReceived = $receiver->receive(); // receive file
+        $path = $request->data;
 
         if ($fileReceived->isFinished()) { // file uploading is complete / all chunks are uploaded
             $file = $fileReceived->getFile(); // get file
@@ -42,6 +43,7 @@ class FileUploadController extends Controller
             // unlink($file->getPathname());
             return [
                 'path' => asset('storage/upload/_now/image/' . $fileName),
+                'data' => $path,
                 'filename' => $fileName
             ];
         }
