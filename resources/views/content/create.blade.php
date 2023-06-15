@@ -153,7 +153,7 @@
             fileType: ['mp4'],
             headers: {
                 'Accept': 'application/json',
-                'path': 'upload/content/file',
+                'path': 'upload/temp',
             },
             testChunks: false,
             throttleProgressCallbacks: 1,
@@ -172,7 +172,6 @@
 
         resumable.on('fileSuccess', function(file, response) { // trigger when file upload complete
             response = JSON.parse(response);
-            console.log(response);
             $('#videoPreview').attr('src', response.path);
             $('.card-footer').show();
             $('#file_name_path').val(response.storage_path);

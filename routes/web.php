@@ -39,10 +39,13 @@ Route::get('clear', function () {
     return "Cleared!";
 });
 
+
+// phpinfo
 Route::get('phpinfo', function () {
     phpinfo();
     echo "phpinfo";
 })->name('phpmyinfo');
+
 
 Route::get('/', [WebController::class, 'home'])->name('home');
 

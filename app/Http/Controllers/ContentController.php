@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Symfony\Component\Finder\SplFileInfo;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class ContentController extends Controller
 {
@@ -43,6 +45,9 @@ class ContentController extends Controller
 
     public function create()
     {
+
+        
+
         $categories = Category::all();
         $owners = ContentOwner::all();
         $contentTypes = ContentType::all();
@@ -122,10 +127,15 @@ class ContentController extends Controller
         $content->description = $request->description;
         $content->artist_name = $request->artist_name;
         $content->price = $request->price;
+        $filename = '';
         if ($request->file_name_path) {
-            $content->file_name = $request->file_name_path;
+            // File
+            $path = $request->file_name_path;
+            $target = 'upload/content/file/hi.mp4';
+            $file = File::move($path, $target);
+            $content->file_name = $target;
         }
-        $info = new SplFileInfo($request->file_name_path, '', '');
+        $info = new SplFileInfo($filename, '', '');
         $content->file_size = $info->getSize();
         $content->location = $request->location;
         $content->insert_date = now();
