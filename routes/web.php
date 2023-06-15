@@ -7,6 +7,7 @@ use App\Http\Controllers\ContentOwnerController;
 use App\Http\Controllers\ContentTypeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
@@ -38,6 +39,11 @@ Route::get('clear', function () {
     return "Cleared!";
 });
 
+Route::get('phpinfo', function () {
+    phpinfo();
+    echo "phpinfo";
+})->name('phpmyinfo');
+
 Route::get('/', [WebController::class, 'home'])->name('home');
 
 // admin routes
@@ -47,13 +53,13 @@ Route::name('admin.')
         Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
         Route::post('/submit', [AuthController::class, 'loginFormSubmit'])->name('login.submit');
         Route::post('/logout', [AuthController::class, 'logout'])
-        ->middleware('auth')
-        ->name('logout');
+            ->middleware('auth')
+            ->name('logout');
 
         // dashboard
         Route::get('/dashboard', [DashboardController::class, 'dashboard'])
-         ->middleware('auth')
-        ->name('dashboard');
+            ->middleware('auth')
+            ->name('dashboard');
     });
 
 Route::name('user.')
@@ -148,3 +154,9 @@ Route::name('subscriber.')
 
 
 
+
+// File Upload
+
+
+Route::get('file-upload', [FileUploadController::class, 'index'])->name('files.index');
+Route::post('file-upload/upload-large-files', [FileUploadController::class, 'uploadLargeFiles'])->name('files.upload.large');
