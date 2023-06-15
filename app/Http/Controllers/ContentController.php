@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\Finder\SplFileInfo;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Http\UploadedFile;
 
 class ContentController extends Controller
 {
@@ -104,6 +105,8 @@ class ContentController extends Controller
         $content->type_id = $request->content_type_id;
         $content->title = $request->title;
         $content->short_des = $request->short_des;
+
+
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = date('Y_m_d_H_i_s_') .  $image->getClientOriginalName();
@@ -119,7 +122,7 @@ class ContentController extends Controller
         $content->description = $request->description;
         $content->artist_name = $request->artist_name;
         $content->price = $request->price;
-        if ($request->hasFile('file_name')) {
+        if ($request->file('file_name')) {
             $image = $request->file('file_name');
             $imageName = date('Y_m_d_H_i_s_') .  $image->getClientOriginalName();
             $image->move('upload/content/file', $imageName);
@@ -166,6 +169,8 @@ class ContentController extends Controller
         $content->type_id = $request->content_type_id;
         $content->title = $request->title;
         $content->short_des = $request->short_des;
+
+        
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = date('Y_m_d_H_i_s_') .  $image->getClientOriginalName();
@@ -181,7 +186,7 @@ class ContentController extends Controller
         $content->description = $request->description;
         $content->artist_name = $request->artist_name;
         $content->price = $request->price;
-        if ($request->hasFile('file_name')) {
+        if ($request->file('file_name')) {
             $image = $request->file('file_name');
             $imageName = date('Y_m_d_H_i_s_') .  $image->getClientOriginalName();
             $image->move('upload/content/file', $imageName);

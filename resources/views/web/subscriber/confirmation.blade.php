@@ -1,4 +1,4 @@
-@extends('layouts.web')
+@extends('layouts.web', ['title' => 'Subscriber Confirmation'])
 
 @section('content')
     @include('layouts._partials.web.top-banner-panel', ['title' => $phone])

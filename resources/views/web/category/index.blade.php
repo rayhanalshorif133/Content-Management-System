@@ -1,4 +1,4 @@
-@extends('layouts.web')
+@extends('layouts.web', ['title' => 'Category'])
 
 @section('content')
     @include('layouts._partials.web.top-banner-panel', ['title' => 'Category'])

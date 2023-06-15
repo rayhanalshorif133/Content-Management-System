@@ -7,7 +7,12 @@
     <meta name="description" content>
     <meta name="author" content>
     <link rel="icon" href="favicon.ico">
-    <title>Index</title>
+    <title>
+        WWEBD
+        @if (isset($title))
+            | {{ $title }}
+        @endif
+    </title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <link

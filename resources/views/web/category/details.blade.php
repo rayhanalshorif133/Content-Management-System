@@ -7,7 +7,7 @@
         ->where('status', 1)
         ->first();
 @endphp
-@extends('layouts.web')
+@extends('layouts.web', ['title' => $category->name])
 @section('content')
     @include('layouts._partials.web.top-banner-panel', ['title' => $category->name])
     <main role="main">

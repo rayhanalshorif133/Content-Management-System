@@ -35,6 +35,7 @@ class SubscriberController extends Controller
                 $isSubscriber->update([
                     'status' => 1,
                     'modified' => now()->format('Y-m-d H:i:s'),
+                    'last_update' => now()->format('Y-m-d H:i:s'),
                 ]);
             }
         } else {
@@ -42,6 +43,7 @@ class SubscriberController extends Controller
                 'msisdn' => $this->get_msisdn(),
                 'opr' => $this->get_opr(),
                 'status' => 1,
+                'last_update' => now()->format('Y-m-d H:i:s'),
                 'created' => now()->format('Y-m-d H:i:s'),
                 'modified' => now()->format('Y-m-d H:i:s'),
             ]);
@@ -74,6 +76,7 @@ class SubscriberController extends Controller
             $isSubscriber->update([
                 'status' => 0,
                 'modified' => now()->format('Y-m-d H:i:s'),
+                'last_update' => now()->format('Y-m-d H:i:s'),
             ]);
         }
         $this->flashMessageSuccess('You are unsubscribed');

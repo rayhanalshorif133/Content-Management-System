@@ -1,4 +1,4 @@
-@extends('layouts.web')
+@extends('layouts.web', ['title' => 'Help'])
 
 @section('content')
     @php
