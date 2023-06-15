@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\File;
 
 class ContentController extends Controller
 {
+
+
     public function index(Request $request)
     {
 
@@ -49,7 +51,7 @@ class ContentController extends Controller
 
     public function create()
     {
-        // $file = File::allFiles('upload/temp-data/');
+       
         // // delete temporary
         // $file = File::delete('upload/temp-data/ImS_23_06_15_15_06_41.mp4');
 
@@ -240,5 +242,24 @@ class ContentController extends Controller
         } else {
             return $this->respondWithError('Content deletion failed.');
         }
+    }
+
+
+    public function tempDataFileDelete(){
+        // get all temp files
+        $baseUrl = base_path() . '/public/upload/temp-data/';
+        $files = File::files($baseUrl);
+
+        foreach ($files as $file) {
+            $file = (string)$file;
+            $info = new SplFileInfo($file, '', '');
+            unlink($file);
+        }
+
+        $date_and_time = date("Y-m-d H:i:s");  
+        $msg = 'File deleted successfully and Time: ' . $date_and_time;
+
+
+        \Log::info($msg);
     }
 }

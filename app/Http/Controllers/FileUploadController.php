@@ -13,9 +13,8 @@ use Pion\Laravel\ChunkUpload\Receiver\FileReceiver;
 class FileUploadController extends Controller
 {
 
-    /**
-     * @return Application|Factory|View
-     */
+
+
     public function index()
     {
         return view('upload-file.index');
@@ -34,7 +33,7 @@ class FileUploadController extends Controller
         if ($request->hasHeader('path')) {
             $path = $request->header('path');
         } else {
-            $path = 'upload/unknown';
+            $path = 'upload/temp-data';
         }
 
         if ($fileReceived->isFinished()) { // file uploading is complete / all chunks are uploaded
