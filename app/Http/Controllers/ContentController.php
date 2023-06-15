@@ -26,6 +26,10 @@ class ContentController extends Controller
                 ->get();
             return DataTables::of($contents)
                 ->addIndexColumn()
+                ->addColumn('select', function ($content) {
+                    $select = '<input type="checkbox" name="select[]" value="' . $content->id . '">';
+                    return $select;
+                })
                 ->addColumn('insert_date', function ($content) {
                     return date('d-m-Y H:m:s A', strtotime($content->insert_date));
                 })
@@ -45,7 +49,16 @@ class ContentController extends Controller
 
     public function create()
     {
+        // $file = File::allFiles('upload/temp-data/');
+        // // delete temporary
+        // $file = File::delete('upload/temp-data/ImS_23_06_15_15_06_41.mp4');
 
+
+        // target
+        // $fileName = "P2r_23_06_15_15_06_32.mp4";
+        // // move temp-data to content folder
+        // $target = 'upload/content/' . $fileName;
+        // $file = File::move('upload/temp-data/' . $fileName, $target);
         
 
         $categories = Category::all();
@@ -129,10 +142,9 @@ class ContentController extends Controller
         $content->price = $request->price;
         $filename = '';
         if ($request->file_name_path) {
-            // File
-            $path = $request->file_name_path;
-            $target = 'upload/content/file/hi.mp4';
-            $file = File::move($path, $target);
+            $fileName = explode("/", $request->file_name_path)[2];
+            $target = 'upload/content/file/' . $fileName;
+            $file = File::move('upload/temp-data/' . $fileName, $target);
             $content->file_name = $target;
         }
         $info = new SplFileInfo($filename, '', '');

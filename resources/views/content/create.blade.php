@@ -153,7 +153,7 @@
             fileType: ['mp4'],
             headers: {
                 'Accept': 'application/json',
-                'path': 'upload/temp',
+                'path': 'upload/temp-data',
             },
             testChunks: false,
             throttleProgressCallbacks: 1,

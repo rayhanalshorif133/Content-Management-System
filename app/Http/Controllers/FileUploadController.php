@@ -40,8 +40,8 @@ class FileUploadController extends Controller
         if ($fileReceived->isFinished()) { // file uploading is complete / all chunks are uploaded
             $file = $fileReceived->getFile(); // get file
             $extension = $file->getClientOriginalExtension();
-            $fileName = str_replace('.' . $extension, '', $file->getClientOriginalName()); //file name without extenstion
-            $fileName .= '_' . date('yyyy_m_d_H_m_s') . '.' . $extension; // a unique file name
+            $fileName = str_replace('.' . $extension, '', $this->generateRandomString(10)); //file name without extenstion
+            $fileName .= '_' . date('y_m_d_H_m_s') . '.' . $extension; // a unique file name
             $file->move($path, $fileName);
             return [
                 'path' => asset($path . '/' . $fileName),
@@ -57,4 +57,14 @@ class FileUploadController extends Controller
             'status' => true
         ];
     }
+
+    function generateRandomString($length = 25) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
 }
