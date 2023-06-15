@@ -21,7 +21,7 @@ class FileUploadController extends Controller
         return view('upload-file.index');
     }
 
-    public function uploadLargeFiles(Request $request)
+    public function uploadFiles(Request $request)
     {
         $receiver = new FileReceiver('file', $request, HandlerFactory::classFromRequest($request));
 
@@ -30,19 +30,23 @@ class FileUploadController extends Controller
         }
 
         $fileReceived = $receiver->receive(); // receive file
+        // get path of uploaded file
+        if ($request->hasHeader('path')) {
+            $path = $request->header('path');
+        } else {
+            $path = 'upload/unknown';
+        }
 
         if ($fileReceived->isFinished()) { // file uploading is complete / all chunks are uploaded
             $file = $fileReceived->getFile(); // get file
             $extension = $file->getClientOriginalExtension();
             $fileName = str_replace('.' . $extension, '', $file->getClientOriginalName()); //file name without extenstion
-            $fileName .= date('H_m_s') . '.' . $extension; // a unique file name
-            $file->move('upload/_now/image', $fileName);
-
-            // delete chunked file
-            // unlink($file->getPathname());
+            $fileName .= '_' . date('yyyy_m_d_H_m_s') . '.' . $extension; // a unique file name
+            $file->move($path, $fileName);
             return [
-                'path' => asset('storage/upload/_now/image/' . $fileName),
-                'filename' => $fileName
+                'path' => asset($path . '/' . $fileName),
+                'filename' => $fileName,
+                'storage_path' => $path . '/' . $fileName,
             ];
         }
 

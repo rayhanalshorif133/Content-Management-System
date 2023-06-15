@@ -122,14 +122,11 @@ class ContentController extends Controller
         $content->description = $request->description;
         $content->artist_name = $request->artist_name;
         $content->price = $request->price;
-        if ($request->file('file_name')) {
-            $image = $request->file('file_name');
-            $imageName = date('Y_m_d_H_i_s_') .  $image->getClientOriginalName();
-            $image->move('upload/content/file', $imageName);
-            $content->file_name = 'upload/content/file/' . $imageName;
-            $info = new SplFileInfo($content->file_name, '', '');
-            $content->file_size = $info->getSize();
+        if ($request->file_name_path) {
+            $content->file_name = $request->file_name_path;
         }
+        $info = new SplFileInfo($request->file_name_path, '', '');
+        $content->file_size = $info->getSize();
         $content->location = $request->location;
         $content->insert_date = now();
         $content->update_date = now();

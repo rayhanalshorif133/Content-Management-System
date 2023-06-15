@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 
     <title>{{ config('app.name') }}</title>
 </head>
@@ -50,29 +49,20 @@
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <!-- Bootstrap JS Bundle with Popper -->
-    <!-- Resumable JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
-    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/resumablejs@1.1.0/resumable.min.js"></script>
 
     <script type="text/javascript">
         let browseFile = $('#browseFile');
-        console.log(browseFile);
         let resumable = new Resumable({
-            target: '{{ route('files.upload.large') }}',
+            target: '{{ route('upload.files') }}',
             query: {
-                _token: '{{ csrf_token() }}'
+                _token: '{{ csrf_token() }}',
             }, // CSRF token
             fileType: ['mp4'],
             headers: {
-                'Accept': 'application/json'
+                'Accept': 'application/json',
+                'path': 'upload/content/file',
             },
             testChunks: false,
             throttleProgressCallbacks: 1,
@@ -90,7 +80,8 @@
         });
 
         resumable.on('fileSuccess', function(file, response) { // trigger when file upload complete
-            response = JSON.parse(response)
+            response = JSON.parse(response);
+            console.log(response);
             $('#videoPreview').attr('src', response.path);
             $('.card-footer').show();
         });
