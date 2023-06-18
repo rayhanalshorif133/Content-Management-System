@@ -18,6 +18,9 @@
                         Content List
                     </h3>
                     <div class="card-tools">
+                        <a href="{{ route('content.view', $content->id) }}" class="btn btn-outline-view btn-tool">
+                            <i class="fas fa-eye"></i> View
+                        </a>
                         <a href="{{ route('content.index') }}" class="btn btn-outline-back btn-tool backBtnContentList">
                             <i class="fa-solid fa-chevron-left"></i><i class="fa-solid fa-chevron-left"></i> Back
                         </a>
