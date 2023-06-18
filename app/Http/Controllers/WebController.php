@@ -86,4 +86,14 @@ class WebController extends Controller
     {
         return view('web.faq');
     }
+
+    public function help()
+    {
+        return view('web.help');
+    }
+    
+    public function terms_condition()
+    {
+        return view('web.terms-condition');
+    }
 }

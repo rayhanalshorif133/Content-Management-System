@@ -44,6 +44,30 @@
     border-color: #b62626 !important;
 }
 
+.btn-outline-view {
+    background-color: #fff !important;
+    color: #187432 !important;
+    border-color: #187432 !important;
+}
+
+.btn-outline-view:hover {
+    background-color: #187432 !important;
+    color: #fff !important;
+    border-color: #187432 !important;
+}
+
+.btn-outline-edit {
+    background-color: #fff !important;
+    color: #267fb6 !important;
+    border-color: #267fb6 !important;
+}
+
+.btn-outline-edit:hover {
+    background-color: #267fb6 !important;
+    color: #fff !important;
+    border-color: #267fb6 !important;
+}
+
 .backBtnContentList i:nth-child(1) {
     transition: all 0.5s ease-in-out;
     animation: showHide1 1.8s infinite;

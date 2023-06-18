@@ -1,4 +1,4 @@
-@extends('layouts.web')
+@extends('layouts.web', ['title' => 'Home'])
 
 @section('content')
     @include('layouts._partials.web.header')

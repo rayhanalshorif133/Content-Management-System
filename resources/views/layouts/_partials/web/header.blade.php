@@ -19,7 +19,7 @@
                 <div id="nav-content" tabindex="0">
                     <ul class="navbar-nav bg-transparent fixed-top" id="sidebar-wrapper">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('home') }}">
                                 &nbsp Home <span class="sr-only">(current)</span></a>
                         </li>
                         @foreach ($categories as $category)
@@ -32,7 +32,7 @@
                     </ul>
                 </div>
                 <a class="navbar-brand text-center d-block font-weight-bold" style="font-size: 2rem; color:#fff;"
-                    href="#">
+                    href="{{ route('home') }}">
                     WWEBD
                     <!-- <img src="images/logo.png" style="height: 40px; width: auto;" alt="" title=""> -->
                 </a>
@@ -46,7 +46,7 @@
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand text-center d-block font-weight-bold" href="#"
+            <a class="navbar-brand text-center d-block font-weight-bold" href="{{ route('home') }}"
                 tyle="font-size: 2rem; color:#fff;">
                 WWEBD
                 <!-- <img src="images/logo.png" style="height: 40px; width: auto;" alt="" title=""> -->
@@ -54,7 +54,7 @@
             <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('home') }}">
                             &nbsp Home <span class="sr-only">(current)</span></a>
                     </li>
                     @foreach ($categories as $category)

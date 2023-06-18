@@ -8,7 +8,7 @@
         ->first();
 @endphp
 
-@extends('layouts.web')
+@extends('layouts.web', ['title' => 'Details'])
 
 @section('content')
     @include('layouts._partials.web.top-banner-panel', ['title' => 'Detail'])

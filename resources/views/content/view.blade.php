@@ -10,6 +10,9 @@
                         Content Details
                     </h3>
                     <div class="card-tools">
+                        <a href="{{ route('content.edit', $content->id) }}" class="btn btn-outline-edit btn-tool">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
                         <a href="{{ route('content.index') }}" class="btn btn-outline-back btn-tool">
                             <i class="fas fa-arrow-left"></i> Back
                         </a>

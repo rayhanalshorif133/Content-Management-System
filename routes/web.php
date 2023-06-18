@@ -7,10 +7,13 @@ use App\Http\Controllers\ContentOwnerController;
 use App\Http\Controllers\ContentTypeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\SubscriberController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +26,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// clear routes
+Route::get('clear', function () {
+    Artisan::call('view:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    Artisan::call('config:clear');
+    Artisan::call('optimize:clear');
+    Artisan::call('config:cache');
+    Artisan::call('optimize');
+    Artisan::call('route:cache');
+    return "Cleared!";
+});
+
+
+// phpinfo
+Route::get('phpinfo', function () {
+    phpinfo();
+    echo "phpinfo";
+})->name('phpmyinfo');
+
+
 Route::get('/', [WebController::class, 'home'])->name('home');
 
 // admin routes
@@ -31,15 +55,28 @@ Route::name('admin.')
     ->group(function () {
         Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
         Route::post('/submit', [AuthController::class, 'loginFormSubmit'])->name('login.submit');
-        Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+        Route::post('/logout', [AuthController::class, 'logout'])
+            ->middleware('auth')
+            ->name('logout');
 
         // dashboard
-        Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'dashboard'])
+            ->middleware('auth')
+            ->name('dashboard');
     });
+
+Route::name('user.')
+    ->prefix('user')
+    ->middleware('auth')
+    ->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('index');
+    });
+
 
 // Category
 Route::name('admin.category.')
     ->prefix('admin/category')
+    ->middleware('auth')
     ->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('index');
         Route::get('/fetch-details/{id}', [CategoryController::class, 'fetchDetails'])->name('fetch-details');
@@ -53,6 +90,7 @@ Route::name('admin.category.')
 // Content
 Route::name('content.')
     ->prefix('content')
+    ->middleware('auth')
     ->group(function () {
         Route::get('/', [ContentController::class, 'index'])->name('index');
         Route::get('/create', [ContentController::class, 'create'])->name('create');
@@ -67,6 +105,7 @@ Route::name('content.')
 // Content Owner
 Route::name('content-owner.')
     ->prefix('content-owner')
+    ->middleware('auth')
     ->group(function () {
         Route::get('/', [ContentOwnerController::class, 'index'])->name('index');
         Route::post('/store', [ContentOwnerController::class, 'store'])->name('store');
@@ -77,6 +116,7 @@ Route::name('content-owner.')
 // Content Types
 Route::name('content-type.')
     ->prefix('content-type')
+    ->middleware('auth')
     ->group(function () {
         Route::get('/', [ContentTypeController::class, 'index'])->name('index');
         Route::post('/create', [ContentTypeController::class, 'create'])->name('create');
@@ -102,7 +142,8 @@ Route::name('category.')
         }
     );
 Route::get('faq', [WebController::class, 'faq_index'])->name('faq.index');
-Route::get('faq', [WebController::class, 'faq_index'])->name('faq.index');
+Route::get('help', [WebController::class, 'help'])->name('help.index');
+Route::get('terms-condition', [WebController::class, 'terms_condition'])->name('terms-condition.index');
 
 // subscriber
 Route::name('subscriber.')
@@ -113,3 +154,12 @@ Route::name('subscriber.')
         Route::get('cancel-confirmation', [SubscriberController::class, 'subscriberCancelConfirmation'])->name('cancel-confirmation');
         Route::get('cancel-confirmed', [SubscriberController::class, 'subscriberCancelConfirmed'])->name('cancel-confirmed');
     });
+
+
+
+
+// File Upload
+
+
+Route::get('file-upload', [FileUploadController::class, 'index'])->name('files.index');
+Route::post('file-upload/upload-large-files/', [FileUploadController::class, 'uploadFiles'])->name('upload.files');
