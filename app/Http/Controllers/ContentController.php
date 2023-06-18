@@ -21,8 +21,7 @@ class ContentController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        dd(Auth::user());
-         $this->checkContentTempDataAndDelete();
+        
     }
 
 
@@ -53,15 +52,16 @@ class ContentController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
+        $this->checkContentTempDataAndDelete();
         return view('content.index');
     }
 
 
     public function create()
     {
-       
         
 
+       $this->checkContentTempDataAndDelete();
         $categories = Category::all();
         $owners = ContentOwner::all();
         $contentTypes = ContentType::all();
@@ -70,6 +70,7 @@ class ContentController extends Controller
 
     public function view($id)
     {
+        $this->checkContentTempDataAndDelete();
         $content = Content::select()
             ->with('category', 'owner', 'type')
             ->where('id', $id)
@@ -106,7 +107,6 @@ class ContentController extends Controller
             'content_type_id' => 'required',
             'title' => 'required|string|max:255',
             'short_des' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
             'artist_name' => 'nullable|string|max:255',
             'price' => 'required|integer',
             'location' => 'nullable|string|max:255',
@@ -159,6 +159,7 @@ class ContentController extends Controller
         }
 
         if ($content->save()) {
+            $this->checkContentTempDataAndDelete();
             $this->flashMessageSuccess('Content created successfully.');
             return redirect()->route('content.index');
         } else {
@@ -173,7 +174,7 @@ class ContentController extends Controller
         $validator = Validator($request->all(), [
             'title' => 'required|string|max:255',
             'short_des' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
+            'description' => 'string|max:255',
             'artist_name' => 'nullable|string|max:255',
             'price' => 'required|integer',
             'location' => 'nullable|string|max:255',
@@ -225,6 +226,7 @@ class ContentController extends Controller
         }
 
         if ($content->save()) {
+            $this->checkContentTempDataAndDelete();
             $this->flashMessageSuccess('Content created successfully.');
             return redirect()->route('content.index');
         } else {
@@ -237,6 +239,7 @@ class ContentController extends Controller
     {
         $content = Content::find($id);
         if ($content->delete()) {
+            $this->checkContentTempDataAndDelete();
             return $this->respondWithSuccess('Content deleted successfully.');
         } else {
             return $this->respondWithError('Content deletion failed.');
@@ -274,11 +277,11 @@ class ContentController extends Controller
             $info = new SplFileInfo($file, '', '');
             $userIDAndExt = explode("user_id-", $info)[1];
             $userID = explode(".", $userIDAndExt[0])[0];
-            $authUserID = auth()->user()->id;
+            $authUserID = Auth::user()->id;
             if($userID == $authUserID){
                 unlink($file);
             }
         }
-
+        return true;
     }
 }

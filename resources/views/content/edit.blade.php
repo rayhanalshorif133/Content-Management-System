@@ -76,16 +76,26 @@
                             </div>
                             <div class="col-md-4">
                                 <label for="image" class="optional">Image</label>
+                                <img src="{{ asset($content->image) }}" alt="{{ $content->title }}"
+                                    class="img-fluid img-thumbnail">
+                                <small class="text-muted required">If Image Not Set Previous Image Autoset</small>
                                 <input type="file" name="image" id="image" class="form-control">
+                                <small class="text-muted"><span class="required">Image size</span> must be 1200x675 &
+                                    smaller then 2MB</small>
                             </div>
                             <div class="col-md-4">
                                 <label for="banner_image" class="optional">Banner Image</label>
+                                <img src="{{ asset($content->banner_image) }}" alt="{{ $content->title }}"
+                                    class="img-fluid img-thumbnail">
+                                <small class="text-muted required">If Image Not Set Previous Image Autoset</small>
                                 <input type="file" name="banner_image" id="banner_image" class="form-control">
+                                <small class="text-muted"><span class="required">Image size</span> must be 1200x675 &
+                                    smaller then 2MB</small>
                             </div>
                             <div class="col-md-4">
                                 {{-- description --}}
-                                <label for="description" class="required">Description</label>
-                                <textarea name="description" id="description" class="form-control" required placeholder="Enter a description">{{ $content->description }}</textarea>
+                                <label for="description" class="optional">Description</label>
+                                <textarea name="description" id="description" class="form-control" placeholder="Enter a description">{{ $content->description }}</textarea>
                             </div>
                             <div class="col-md-4">
                                 <label for="artist_name" class="optional">Artist Name</label>
@@ -105,6 +115,11 @@
                                     <div class="progress-bar progress-bar-striped progress-bar-animated"
                                         role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
                                         style="width: 75%; height: 100%">75%</div>
+                                </div>
+                                <div class="progress-complete mt-3 d-none" style="height: 25px">
+                                    <div class="progress-bar bg-success" style="width: 100%; height: 100%">
+                                        Completed
+                                    </div>
                                 </div>
                                 <div class="card-footer p-4">
                                     <video id="videoPreview" src="" controls
@@ -154,7 +169,7 @@
             fileType: ['mp4'],
             headers: {
                 'Accept': 'application/json',
-                'path': 'upload/content/file',
+                'path': 'upload/temp-data',
             },
             testChunks: false,
             throttleProgressCallbacks: 1,
@@ -163,6 +178,8 @@
         resumable.assignBrowse(browseFile[0]);
 
         resumable.on('fileAdded', function(file) { // trigger when file picked
+            $(".progress").removeClass('d-none');
+            $(".progress-complete").addClass('d-none');
             showProgress();
             resumable.upload() // to actually start uploading.
         });
@@ -177,9 +194,12 @@
             $('#videoPreview').attr('src', response.path);
             $('.card-footer').show();
             $('#file_name_path').val(response.storage_path);
+            $(".progress").addClass('d-none');
+            $(".progress-complete").removeClass('d-none');
         });
 
         resumable.on('fileError', function(file, response) { // trigger when there is any error
+            console.log(file, response);
             alert('file uploading error.')
         });
 

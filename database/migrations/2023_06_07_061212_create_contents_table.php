@@ -23,7 +23,7 @@ class CreateContentsTable extends Migration
             $table->string('short_des');
             $table->string('image')->nullable()->default(NULL);
             $table->string('banner_image')->nullable()->default(NULL);
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->string('artist_name')->nullable()->default(NULL);
             $table->integer('price');
             $table->string('file_name')->nullable()->default(NULL);

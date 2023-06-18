@@ -88,8 +88,8 @@
                             </div>
                             <div class="col-md-4">
                                 {{-- description --}}
-                                <label for="description" class="required">Description</label>
-                                <textarea name="description" id="description" class="form-control" required placeholder="Enter a description"></textarea>
+                                <label for="description" class="optional">Description</label>
+                                <textarea name="description" id="description" class="form-control" placeholder="Enter a description"></textarea>
                             </div>
                             <div class="col-md-4">
                                 <label for="artist_name" class="optional">Artist Name</label>

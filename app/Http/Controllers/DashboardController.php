@@ -16,9 +16,7 @@ class DashboardController extends Controller
 
     public function dashboard()
     {
-        dd(Auth::user());
-        if (Auth::check()) {
-        }
+        
         return view('admin.dashboard');
     }
 }
