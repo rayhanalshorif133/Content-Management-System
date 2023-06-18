@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Session;
 
+
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -28,7 +29,12 @@ class Controller extends BaseController
         }
         // set cookie
         setcookie('msisdn', $msisdn, time() + (86400 * 30), "/"); // 86400 = 1 day
+
+       
     }
+
+
+  
 
     public function get_msisdn()
     {

@@ -110,6 +110,11 @@
                                         role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
                                         style="width: 75%; height: 100%">75%</div>
                                 </div>
+                                <div class="progress-complete mt-3 d-none" style="height: 25px">
+                                    <div class="progress-bar bg-success" style="width: 100%; height: 100%">
+                                        Completed
+                                    </div>
+                                </div>
                                 <div class="card-footer p-4">
                                     <video id="videoPreview" src="" controls
                                         style="width: 100%; height: auto"></video>
@@ -162,6 +167,8 @@
         resumable.assignBrowse(browseFile[0]);
 
         resumable.on('fileAdded', function(file) { // trigger when file picked
+            $(".progress").removeClass('d-none');
+            $(".progress-complete").addClass('d-none');
             showProgress();
             resumable.upload() // to actually start uploading.
         });
@@ -175,6 +182,8 @@
             $('#videoPreview').attr('src', response.path);
             $('.card-footer').show();
             $('#file_name_path').val(response.storage_path);
+            $(".progress").addClass('d-none');
+            $(".progress-complete").removeClass('d-none');
         });
 
         resumable.on('fileError', function(file, response) { // trigger when there is any error

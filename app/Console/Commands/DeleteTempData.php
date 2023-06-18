@@ -12,14 +12,14 @@ class DeleteTempData extends Command
      *
      * @var string
      */
-    protected $signature = 'tempdatadelete:cron';
+    protected $signature = 'tempdatadelete';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Content Uploaded temp file delete';
 
     /**
      * Create a new command instance.

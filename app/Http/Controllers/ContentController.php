@@ -13,9 +13,17 @@ use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 
 class ContentController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        dd(Auth::user());
+         $this->checkContentTempDataAndDelete();
+    }
 
 
     public function index(Request $request)
@@ -52,15 +60,6 @@ class ContentController extends Controller
     public function create()
     {
        
-        // // delete temporary
-        // $file = File::delete('upload/temp-data/ImS_23_06_15_15_06_41.mp4');
-
-
-        // target
-        // $fileName = "P2r_23_06_15_15_06_32.mp4";
-        // // move temp-data to content folder
-        // $target = 'upload/content/' . $fileName;
-        // $file = File::move('upload/temp-data/' . $fileName, $target);
         
 
         $categories = Category::all();
@@ -252,7 +251,6 @@ class ContentController extends Controller
 
         foreach ($files as $file) {
             $file = (string)$file;
-            $info = new SplFileInfo($file, '', '');
             unlink($file);
         }
 
@@ -261,5 +259,26 @@ class ContentController extends Controller
 
 
         \Log::info($msg);
+    }
+
+
+
+    public function checkContentTempDataAndDelete()
+    {
+
+        $baseUrl = base_path() . '/public/upload/temp-data/';
+        $files = File::files($baseUrl);
+
+         foreach ($files as $file) {
+            $file = (string)$file;
+            $info = new SplFileInfo($file, '', '');
+            $userIDAndExt = explode("user_id-", $info)[1];
+            $userID = explode(".", $userIDAndExt[0])[0];
+            $authUserID = auth()->user()->id;
+            if($userID == $authUserID){
+                unlink($file);
+            }
+        }
+
     }
 }

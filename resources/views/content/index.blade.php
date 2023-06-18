@@ -137,16 +137,6 @@
 
         function hanldeSelectedItems() {
             var selectedIds = [];
-
-            // $("#select-all").on("click", function() {
-            //     if (this.checked) {
-            //         $(".input-group-prepend").toggleClass('d-none');
-            //     } else {
-            //         $(".input-group-prepend").toggleClass('d-none');
-            //     }
-            // });
-
-            // input type="checkbox"
             $("body").on("click", "input[type='checkbox']", function() {
                 // get all tr
                 selectedIds = [];

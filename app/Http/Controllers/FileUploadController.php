@@ -7,8 +7,11 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use Pion\Laravel\ChunkUpload\Handler\HandlerFactory;
 use Pion\Laravel\ChunkUpload\Receiver\FileReceiver;
+use Illuminate\Support\Facades\Cookie;
+
 
 class FileUploadController extends Controller
 {
@@ -40,8 +43,19 @@ class FileUploadController extends Controller
             $file = $fileReceived->getFile(); // get file
             $extension = $file->getClientOriginalExtension();
             $fileName = str_replace('.' . $extension, '', $this->generateRandomString(10)); //file name without extenstion
-            $fileName .= '_' . date('y_m_d_H_m_s') . '.' . $extension; // a unique file name
+            $fileName .= '_' . date('d_m_y_h_m_s') . '__user_id-'. Auth::user()->id . '.' . $extension; // a unique file name
             $file->move($path, $fileName);
+
+            // set cokkie directory
+
+            // $info = [
+            //     'filename' => $fileName,
+            //     'user_id' => Auth::user()->id,
+            //     'status' => 'uploaded'
+            // ];
+            // setcookie('content_is_file', json_encode($info), time() + 300, "/"); 
+
+
             return [
                 'path' => asset($path . '/' . $fileName),
                 'filename' => $fileName,

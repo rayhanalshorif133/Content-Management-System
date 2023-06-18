@@ -21,7 +21,8 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('tempdatadelete:cron')->everyFiveMinutes();
+        $schedule->command('tempdatadelete')->everyMinute();
+        // $schedule->command('tempdatadelete')->everyFiveMinutes();
 
     }
 
