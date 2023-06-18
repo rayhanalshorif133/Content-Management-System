@@ -21,7 +21,6 @@ class ContentController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        
     }
 
 
@@ -35,10 +34,6 @@ class ContentController extends Controller
                 ->get();
             return DataTables::of($contents)
                 ->addIndexColumn()
-                ->addColumn('select', function ($content) {
-                    $select = '<input type="checkbox" name="select[]" value="' . $content->id . '">';
-                    return $select;
-                })
                 ->addColumn('insert_date', function ($content) {
                     return date('d-m-Y H:m:s A', strtotime($content->insert_date));
                 })
@@ -59,9 +54,9 @@ class ContentController extends Controller
 
     public function create()
     {
-        
 
-       $this->checkContentTempDataAndDelete();
+
+        $this->checkContentTempDataAndDelete();
         $categories = Category::all();
         $owners = ContentOwner::all();
         $contentTypes = ContentType::all();
@@ -193,7 +188,7 @@ class ContentController extends Controller
         $content->title = $request->title;
         $content->short_des = $request->short_des;
 
-        
+
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = date('Y_m_d_H_i_s_') .  $image->getClientOriginalName();
@@ -257,13 +252,13 @@ class ContentController extends Controller
         $baseUrl = base_path() . '/public/upload/temp-data/';
         $files = File::files($baseUrl);
 
-         foreach ($files as $file) {
+        foreach ($files as $file) {
             $file = (string)$file;
             $info = new SplFileInfo($file, '', '');
             $userIDAndExt = explode("user_id-", $info)[1];
             $userID = explode(".", $userIDAndExt[0])[0];
             $authUserID = Auth::user()->id;
-            if($userID == $authUserID){
+            if ($userID == $authUserID) {
                 unlink($file);
             }
         }

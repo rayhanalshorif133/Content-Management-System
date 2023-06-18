@@ -39,12 +39,6 @@
                     <table class="table content_table w-100">
                         <thead>
                             <tr>
-                                <th>
-                                    <div class="icheck-info d-inline">
-                                        <input type="checkbox" id="select-all">
-                                        <label for="select-all"></label>
-                                    </div>
-                                </th>
                                 <th>#sl</th>
                                 <th>Title</th>
                                 <th>Short <br> Description</th>
@@ -72,18 +66,6 @@
                 serverSide: true,
                 ajax: "{{ route('content.index') }}",
                 columns: [{
-                        render: function(data, type, row) {
-                            var checkBox = `
-                            <div class="icheck-info d-inline">
-                                    <input type="checkbox" name="ids[]" value="${row.id}" id="select-${row.id}">
-                                    <label for="select-${row.id}"></label>
-                                </div>
-                            `;
-                            return checkBox;
-                        },
-                        targets: 0
-                    },
-                    {
                         render: function(data, type, row) {
                             return row.DT_RowIndex;
                         },
@@ -132,31 +114,6 @@
                     },
                 ]
             });
-            hanldeSelectedItems();
         });
-
-        function hanldeSelectedItems() {
-            var selectedIds = [];
-            $("body").on("click", "input[type='checkbox']", function() {
-                // get all tr
-                selectedIds = [];
-                var trs = $(".content_table tbody tr");
-                trs.each(function() {
-                    var tr = $(this);
-                    var checkbox = tr.find("input[type='checkbox']");
-                    if (checkbox.is(":checked")) {
-                        selectedIds.push(checkbox.val());
-                    }
-                });
-
-                if (selectedIds.length > 0) {
-                    $(".input-group-prepend").removeClass('d-none');
-                } else {
-                    $(".input-group-prepend").addClass('d-none');
-                }
-
-                console.log(selectedIds);
-            });
-        }
     </script>
 @endpush
