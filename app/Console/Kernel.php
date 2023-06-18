@@ -15,14 +15,11 @@ class Kernel extends ConsoleKernel
      */
 
     protected $commands = [
-        Commands\DeleteTempData::class,
     ];
      
 
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('tempdatadelete')->everyMinute();
-        // $schedule->command('tempdatadelete')->everyFiveMinutes();
 
     }
 

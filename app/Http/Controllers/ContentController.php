@@ -247,22 +247,7 @@ class ContentController extends Controller
     }
 
 
-    public function tempDataFileDelete(){
-        // get all temp files
-        $baseUrl = base_path() . '/public/upload/temp-data/';
-        $files = File::files($baseUrl);
 
-        foreach ($files as $file) {
-            $file = (string)$file;
-            unlink($file);
-        }
-
-        $date_and_time = date("Y-m-d H:i:s");  
-        $msg = 'File deleted successfully and Time: ' . $date_and_time;
-
-
-        \Log::info($msg);
-    }
 
 
 
