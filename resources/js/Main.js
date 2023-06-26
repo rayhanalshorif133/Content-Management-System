@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 
 export default function Main() {
   return (
@@ -9,6 +9,9 @@ export default function Main() {
   )
 }
 
+// Create a root.
 if (document.getElementById('dashboard')) {
-    ReactDOM.render(<Main />, document.getElementById('dashboard'));
+  const dashboard = document.getElementById('dashboard');
+  const root = ReactDOM.createRoot(dashboard);
+  root.render(<Main/>);
 }
